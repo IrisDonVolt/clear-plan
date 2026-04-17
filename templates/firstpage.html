@@ -1,0 +1,23 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html> 
+    <head> 
+        <title>ClearPlan</title>
+        <link rel="icon" href="{% static 'logo.svg' %}" type="image/x-icon">
+        <link rel="stylesheet" href="{% static 'mainstyles.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'firstpagestyles.css' %}" type="text/css">
+    </head>
+
+    <body>
+        <!-- hero text-->
+        <div class="hero-text">
+            <div class="main-heading">Digital Planning</div>
+            <div class="subheading">Now with visual ease.</div>
+            <button class="main-button" onclick="location.href='/register'">Get started</button>
+        </div>
+
+        <!-- logo image -->
+        <img id="logo-box" src="logo.png" width="700" height="700"/>
+    </body>
+</html>
