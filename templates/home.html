@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ClearPlan - Home</title>
+    </head>
+
+    <body>
+        <h1>Home</h1>
+        {% if user.is_authenticated %}
+        <p> Hi {{user.username}}!</p>
+        {% else %}
+        <p>You are not logged in</p>
+        {% endif %}
+    </body>

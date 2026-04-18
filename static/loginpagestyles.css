@@ -1,0 +1,231 @@
+:root {
+    --primary-color: #872E0B; 
+    --secondary-color: #9A5A16; 
+    --accent-color: #000000; 
+    --lightwash: #FFDAB7; 
+    --primary-font: 'Courier New', Courier, monospace; 
+    --secondary-font: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.title-box{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+body {
+    background-color: var(--lightwash);
+    background-image: radial-gradient(
+        #00000013 2px,
+        transparent 4.5px
+    );
+    background-size: 50px 50px; 
+    display: flex; 
+    padding-left: 100px; 
+    gap: 100px; 
+    justify-content: flex-start;
+    align-items: center; 
+}
+
+.error-message-container {
+    display: flex; 
+    flex-direction: row;
+    width: 100%; 
+    height: fit-content; 
+    gap: 10px; 
+    padding: 0px; 
+    justify-content: flex-start;
+    align-items: center; 
+}
+
+.error-message-container img {
+    width: 20px; 
+    height: 20px; 
+}
+
+.error-content {
+    font-family: var(--secondary-font); 
+    font-size: 15px; 
+    font-weight: bold;
+}
+
+.login-container{
+    display:flex; 
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center; 
+    gap:20px; 
+}
+
+form{
+    border: 2px solid black;
+    padding: 30px;
+    border-radius: 10px;
+    display:flex; 
+    flex-direction: column;
+    gap: 20px; 
+}
+
+.field-container {
+    display:flex; 
+    justify-content: space-between;
+    align-items: center; 
+    gap: 100px; 
+}
+
+.submit-button {
+    width: 150px;
+    height: fit-content; 
+    border-radius: 48px;
+    background-color: var(--primary-color);
+    stroke: none;
+    padding: 10px;
+    font-size: 24px; 
+    color: #FFFFFF;
+    align-self: center; 
+    font-family: var(--secondary-font);
+    
+}
+
+.submit-button:hover {
+    background-color: var(--secondary-color); 
+}
+
+.hero-text {
+    min-height: 100vh; 
+    display:flex;
+    flex-direction:column; 
+    justify-content: center;
+    gap: 10px; 
+}
+
+#hero-text-first {
+    font-family: var(--primary-font); 
+    font-weight: bold;
+    font-size: 64px; 
+    color: var(--primary-color); 
+}
+
+#hero-text-second {
+    font-family: var(--primary-font); 
+    font-weight: bold;
+    font-size: 48px; 
+    color: var(--accent-color); 
+}
+
+#get-started-button {
+    width: 241px;
+    height: 74px; 
+    border-radius: 48px;
+    stroke-width: 0px;
+    background-color: var(--primary-color);
+    stroke: none;
+    font-size: 24px; 
+    color: #FFFFFF;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#get-started-button:hover {
+    background-color: var(--secondary-color);
+}
+
+.register-text{
+    text-align: center;
+    margin-top: 15px;
+}
+
+#register{
+    width: 150px;
+    height: 60px;
+    border-radius: 48px;
+    stroke-width: 0px;
+    background-color: var(--primary-color);
+    stroke: none;
+    font-size: 22px; 
+    color: #ffffff;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+#register:hover {
+    background-color: var(--secondary-color);
+    cursor: pointer; 
+}
+
+#logo-box {
+    width: 600px; 
+    height: 600px;
+    margin-bottom: 50px;
+    flex-shrink: 1;
+    animation: fade-in 2s forwards; 
+}
+
+/* animations */
+@keyframes fade-in {
+    from {
+        opacity: 0%;
+    } to {
+        opacity: 100%; 
+    }
+}
+
+
+label{
+font-size:19px;
+}
+
+input{
+font-size:20px;
+}
+
+p{
+font-size:19px;
+}
+
+a{
+font-size:18px;
+}
+
+p1{
+font-size:22px;
+}
+
+/* Top bar */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    background: #fff;
+    border-bottom: 1px solid #ccc;
+}
+
+.canvas {
+    position: relative;
+    width: 100%;
+    height: 90vh;
+}
+
+/* Sticky note */
+.note {
+    width: 150px;
+    height: 150px;
+    background: #e8bb90;
+    position: absolute;
+    padding: 10px;
+    cursor: move;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}        
+
+/* Bottom bar */
+.toolbar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #fff;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    text-align: center;
+}

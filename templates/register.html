@@ -1,0 +1,49 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ClearPlan - Register</title>
+        <link rel="icon" href='{% static 'logo.svg' %}' type="image/x-icon">
+        <link rel="stylesheet" href="{% static 'mainstyles.css'%}" type="text/css">
+        <link rel="stylesheet" href="{% static 'loginpagestyles.css' %}" type="text/css">
+    </head>
+
+    <body>
+        <div class="login-container">
+            <div class="main-heading">Register</div>
+
+            <!-- form error message -->
+            <div class="error-message-container">
+                {% for message in messages %}
+                    <img class="error-icon" src="{% static "warning.png" %}">
+                    <div class="error-content">{{message}}</div>
+                {% endfor %}
+            </div>
+
+            <!-- form starts here -->
+            <form name="register-form" onsubmit="login" method="POST">
+                {% csrf_token %}
+                <div class="field-container">
+                    <label class="text">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+
+                <div class="field-container">
+                    <label class="text">Email:</label>
+                    <input type="email" name="email" required>
+                </div>
+
+                <div class="field-container">
+                    <label class="text">Password:</label>
+                    <input type="password" name="password" required>
+                </div>
+
+                <input type="submit" class="submit-button" value="Register" >
+            </form>
+
+        <p class="text">Already have an account?<a href="accounts/login">Login here.</a></p>
+    </div>
+    <img id="logo-box" src="{% static "logo.png" %}" width="700" height="700">
+</body>
+</html>
