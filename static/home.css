@@ -1,0 +1,47 @@
+:root {
+    --primary-color: #872E0B; 
+    --secondary-color: #9A5A16; 
+    --accent-color: #000000; 
+    --lightwash: #FFDAB7; 
+    --primary-font: 'Courier New', Courier, monospace; 
+}
+
+body {
+    background-color: var(--lightwash);
+    background-image: radial-gradient(
+        #00000013 2px,
+        transparent 4.5px
+    );
+    background-size: 50px 50px; 
+    display: flex; 
+    flex-direction: row;
+    padding-left: 100px; 
+    gap: 100px; 
+    justify-content: flex-start;
+    align-items: center; 
+}
+
+.content {
+    display:flex; 
+    flex-direction: column;
+    height: 100%;
+    justify-content: center; 
+    gap:20px; 
+}
+
+#logo-box {
+    width: 600px; 
+    height: 600px;
+    margin-bottom: 50px;
+    flex-shrink: 1;
+    animation: fade-in 2s forwards; 
+}
+
+/* animations */
+@keyframes fade-in {
+    from {
+        opacity: 0%;
+    } to {
+        opacity: 100%; 
+    }
+}

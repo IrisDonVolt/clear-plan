@@ -1,14 +1,21 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
     <head>
         <title>ClearPlan - Home</title>
+        <link rel="icon" href="{% static 'logo.svg' %}" type="image/x-icon">
+        <link rel="stylesheet" href="{% static 'mainstyles.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'home.css' %}" type="text/css">
     </head>
 
     <body>
-        <h1>Home</h1>
-        {% if user.is_authenticated %}
-        <p> Hi {{user.username}}!</p>
-        {% else %}
-        <p>You are not logged in</p>
-        {% endif %}
+        <div class="content">
+            <div class="subheading">Welcome {{user.username}}!</div>
+            <button class "main-button" onclick="location.href = '/editjournal'">+</button>
+            <div class="text">Create a new Journal!<div>
+        </div>
+
+        <img id="logo-box" src="{% static 'logo.png' %}" width="700" height="700">
     </body>
+</html>

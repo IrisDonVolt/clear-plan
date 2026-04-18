@@ -22,7 +22,7 @@
             </div>
 
             <!-- form starts here -->
-            <form name="register-form" onsubmit="login" method="POST">
+            <form name="register-form" onsubmit="/accounts/login" method="POST">
                 {% csrf_token %}
                 <div class="field-container">
                     <label class="text">Username:</label>
