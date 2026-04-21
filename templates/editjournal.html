@@ -1,0 +1,86 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ClearPlan - Edit Journal</title>
+        <link rel="icon" href="{% static 'logo.svg' %}" type="image/x-icon">
+        <link rel="stylesheet" href="{% static 'mainstyles.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'editjournal.css' %}" type="text/css">
+
+        <script src = {% static "editjournal.js" %} defer></script>
+    </head>
+
+    <body>
+        <!-- header on top of the page -->
+        <div class="header">
+            <!-- home button -->
+            <div id="home-button" onclick="location.href='/home'">
+                <div id="background-circle" onclick="location.href = '/home'">
+                    <img src="{% static 'home_icon.svg' %}" width="58" height="58">
+                </div>
+            </div>
+
+            <!-- page title -->
+            <div id="page-title" class="main-heading">
+                Edit Journal
+            </div>
+        </div>
+
+        <!-- elements -->
+        <div id="elements">
+            <div id="text-only">
+                <!-- color of journal -->
+                <div id="color-of-journal" class="list-of-options">
+                    <p class="text">Color of Journal:</p>
+                    <div class="choose-options">
+                        <button id="blue-option" class="circle" style="background-color: #1C4E78" onclick="changeBookColor(this)"></button>
+                        <button id="green-option" class="circle" style="background-color: #31604C" onclick="changeBookColor(this)"></button>
+                        <button id="purple-option" class="circle" style="background-color: #623889" onclick="changeBookColor(this)"></button>
+                        <button id="pink-option" class="circle" style="background-color: #C263B8" onclick="changeBookColor(this)"></button>
+                    </div>
+                </div>
+
+                <hr>
+
+                <!-- binding color -->
+                <div id="binding-color" class="list-of-options">
+                    <p class="text">Binding color:</p>
+                    <div class="choose-options">
+                        <button id="black-option" class="circle" style="background-color: #000000;" onclick="changeBinderColor(this)"></button>
+                        <button id="brown-option" class="circle" style="background-color: #872E0B;" onclick="changeBinderColor(this)"></button>
+                        <button id="light-brown-option" class="circle" style="background-color: #9A5A16;" onclick="changeBinderColor(this)"></button>
+                    </div>
+                </div>
+
+                <hr>
+
+                <!-- display image -->
+                <div id="display-image" class="list-of-options">
+                    <p class="text">Display image:</p>
+                    <div class="choose-options">
+                        <label for="choose-book-image-button" class="custom-file-upload">Choose file</label>
+                        <input id="choose-book-image-button" type="file" accept="image/*">
+                    </div>
+                </div>
+            </div>
+
+            <!-- book preview -->
+            <div id="book-preview">
+                <div id="binder"></div>
+                <div id="book">
+                    <div class="book-text" id="display-text-on-book">This book belongs to:</div>
+                    <div class="book-text" id="display-username-on-book">Username</div>
+                    <div id="image-placeholder">
+                        <img id="display-image" src="{% static 'logo.png' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- save button -->
+         <div class="header">
+            <button class="main-button">Save</button>
+         </div>
+    </body>
+</html>
