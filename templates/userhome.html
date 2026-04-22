@@ -1,0 +1,29 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ClearPlan - Home</title>
+        <link rel="icon" href="{% static 'logo.svg' %}" type="image/x-icon">
+        <link rel="stylesheet" href="{% static 'mainstyles.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'home.css' %}" type="text/css">
+    </head>
+
+    <body class="user-home">
+        <!-- header on top of the page -->
+        <div class="header">
+            <div id="home-button" onclick="location.href='home'">
+                <div id="background-circle">
+                    <img src="{% static 'home_icon.svg' %}" width="58" height="58">
+                </div>
+            </div>
+
+            <!-- page title -->
+            <div id="page-title" class="main-heading">
+                Home
+            </div>
+        </div>
+
+        
+    </body>
+</html>

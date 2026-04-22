@@ -9,18 +9,52 @@
         <link rel="stylesheet" href="{% static 'home.css' %}" type="text/css">
     </head>
 
-    <body>
-        {% if mode == "new" %}
-            <div class="content">
-                <div class="subheading">Welcome {{user.username}}!</div>
-                <button class="main-button" onclick="location.href = '/editjournal'"> + </button>
-                <div class="text">Create a new Journal!</div>
+    {% comment %} {% if mode == "new" %} {% endcomment %} 
+    <body class="new-home">
+        <div class="content">
+            <div class="subheading">Welcome {{user.username}}!</div>
+            <button class="main-button" onclick="location.href = '/editjournal'"> + </button>
+            <div class="text">Create a new Journal!</div>
+        </div>
+
+        <img id="logo-box" src="{% static 'logo.png' %}" width="700" height="700">
+    </body>
+
+    {% comment "" %}{% else %} {% endcomment %}
+            {% comment "Code for home page with book display" %}{% endcomment %}
+
+        {% comment %}
+        <body class="user-home">
+            <!-- header on top of the page -->
+            <div class="header">
+                <!-- home button -->
+                <div id="home-button" onclick="location.href='/home'">
+                    <div id="background-circle" onclick="location.href = '/home'">
+                        <img src="{% static 'home_icon.svg' %}" width="58" height="58">
+                    </div>
+                </div>
+
+                <!-- page title -->
+                <div id="page-title" class="main-heading">
+                    Home
+                </div>
             </div>
 
-            <img id="logo-box" src="{% static 'logo.png' %}" width="700" height="700">
-
-        {% else %}
-            {% comment "Code for home page with book display" %}{% endcomment %}
-        {% endif %}
-    </body>
+            <div class="book-area">
+                <!-- book preview -->
+                <div id="book-preview">
+                    <div id="binder"></div>
+                    <div id="book">
+                        <div class="book-text" id="display-text-on-book">This book belongs to:</div>
+                        <div class="book-text" id="display-username-on-book">Username</div>
+                        <div id="image-placeholder">
+                            <img id="display-image" src="{% static 'logo.png' %}">
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </body>
+    {% endcomment %}
+    {% comment %} {% endif %} {% endcomment %}
 </html>

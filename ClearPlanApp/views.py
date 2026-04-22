@@ -39,24 +39,21 @@ def register(request):
     else: 
         return render(request, 'register.html')
 
-def home(request, mode): 
+def home(request): 
     current_user = request.user 
-    if current_user.is_authenticated: 
-        current_user_id = current_user.id 
-        current_user_username = current_user.username 
-        
+    if current_user.is_authenticated:
         context = {
-            'id': current_user_id, 
-            'username': current_user_username
+            'current_user': current_user
         }
         
-        journal = Journal.objects.filter(userid=current_user_id)
+        journal = Journal.objects.filter(userid=current_user.id)
         if journal: 
-            mode = f"{current_user_username}"
+            return render(request, 'userhome.html', context)
         else: 
-            mode = "new"
-        
-        return render(request, 'home.html', {'context': context, 'mode': mode})
+            return render(request, 'home.html', context)
 
+def userhome(request):
+    return render(request, 'userhome.html')
+    
 def editjournal(request): 
     return render(request, 'editjournal.html')
