@@ -10,14 +10,22 @@
     </head>
 
     {% comment %} {% if mode == "new" %} {% endcomment %} 
-    <body class="new-home">
-        <div class="content">
-            <div class="subheading">Welcome {{user.username}}!</div>
-            <button class="main-button" onclick="location.href = '/editjournal'"> + </button>
-            <div class="text">Create a new Journal!</div>
+    <body>
+        <div class="header">
+            <button class="smaller-button">Logout</button>
         </div>
 
-        <img id="logo-box" src="{% static 'logo.png' %}" width="700" height="700">
+        <div class="content-area">
+            <div class="content">
+                <div class="subheading">Welcome {{user.username}}!</div>
+                <button class="main-button" onclick="location.href = '/editjournal'"> + </button>
+                <div class="text">Create a new Journal!</div>
+            </div>
+
+            <div id="logo-box">
+                <img id="logo" src="{% static 'logo.png' %}">
+            </div>
+        </div>
     </body>
 
     {% comment "" %}{% else %} {% endcomment %}
