@@ -6,10 +6,10 @@
         <title>ClearPlan - Home</title>
         <link rel="icon" href="{% static 'logo.svg' %}" type="image/x-icon">
         <link rel="stylesheet" href="{% static 'mainstyles.css' %}" type="text/css">
-        <link rel="stylesheet" href="{% static 'home.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'userhome.css' %}" type="text/css">
     </head>
 
-    <body class="user-home">
+    <body>
         <!-- header on top of the page -->
         <div class="header">
             <div id="home-button" onclick="location.href='home'">
@@ -22,6 +22,22 @@
             <div id="page-title" class="main-heading">
                 Home
             </div>
+        </div>
+
+        <!-- content -->
+        <div class="book-area">
+            <div id="book-preview">
+                <div id="binder"></div>
+                <div id="book">
+                    <div class="book-text" id="display-text-on-book">This book belongs to:</div>
+                    <div class="book-text" id="display-username-on-book">{{user.username}}</div>
+                    <div id="image-placeholder">
+                        <img id="display-image" src="{% static 'logo.png' %}">
+                    </div>
+                </div>
+            </div>
+
+            <button class="main-button">Open Journal</button>
         </div>
 
         

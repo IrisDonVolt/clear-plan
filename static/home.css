@@ -53,6 +53,24 @@ body {
     gap: 0px; 
 }
 
+.input-button {
+    display: inline-block;
+    box-sizing: border-box;
+    cursor: pointer; 
+    height: fit-content;
+    width: fit-content; 
+    padding: 10px 20px 10px 20px;
+    background-color: var(--primary-color); 
+    border-radius: 30px;
+    font-size: 24px;
+    color: #FFFFFF; 
+    font-family: var(--secondary-font);
+}
+
+.input-button:hover {
+    background-color: var(--secondary-color);
+}
+
 #logo-box {
     display:flex; 
     justify-content: center;
@@ -100,3 +118,13 @@ body {
     padding: 0px; 
 }
 
+#logout-button {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}

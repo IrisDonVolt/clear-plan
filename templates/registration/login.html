@@ -14,10 +14,8 @@
             <div class="main-heading">Login</div>
             <!-- form error message -->
             <div class="error-message-container">
-                {% for message in messages %}
-                    <img class="error-icon" src="{% static "warning.png" %}">
-                    <div class="error-content">{{message}}</div>
-                {% endfor %}
+                <img class="error-icon" src="{% static 'warning.png' %}">
+                <div class="error-content">Please enter the correct credentials.</div>
             </div>
 
             <!-- form starts here -->

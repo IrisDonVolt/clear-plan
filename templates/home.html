@@ -12,7 +12,11 @@
     {% comment %} {% if mode == "new" %} {% endcomment %} 
     <body>
         <div class="header">
-            <button class="smaller-button">Logout</button>
+            <form action="{% url 'logout' %}" method="POST">
+                {% csrf_token %}
+                <label for="logout-button" class="input-button">Logout</label>
+                <input id="logout-button" type="submit">
+            </form>
         </div>
 
         <div class="content-area">
