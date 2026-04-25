@@ -10,7 +10,6 @@ class Users(models.Model):
     created_at = models.DateTimeField(default=datetime.now, blank=True)
     
 class Journal(models.Model):
-    title = models.CharField(max_length=50)
     userid = models.ForeignKey(Users, on_delete=models.CASCADE)
     bookcolor = models.CharField(max_length=None) 
     bindercolor = models.CharField(max_length=None) 

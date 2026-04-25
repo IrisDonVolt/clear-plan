@@ -98,6 +98,26 @@ hr {
     background-color: var(--secondary-color);
 }
 
+.save {
+    display: inline-block; 
+    box-sizing: border-box;
+    width: 241px;
+    height: 74px; 
+    border-radius: 48px;
+    background-color: var(--primary-color);
+    stroke: none;
+    font-size: 24px; 
+    color: #FFFFFF;
+    font-family: var(--secondary-font);
+    text-align: center; 
+    align-content: center;
+    cursor: pointer; 
+}
+
+.save:hover {
+    background-color: var(--secondary-color);
+}
+
 #background-circle {
     width: 95px; 
     height: 95px; 
@@ -190,14 +210,4 @@ hr {
     height: 100%; 
 }
 
-#choose-book-image-button {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
-}
 

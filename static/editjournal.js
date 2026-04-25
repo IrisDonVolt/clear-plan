@@ -9,3 +9,8 @@ function changeBinderColor(button) {
     var binder_div = document.getElementById('binder'); 
     binder_div.style.backgroundColor = color;
 }
+
+function saveInfo() {
+    var book_color = document.getElementById('book');
+    var binder_color = document.getElementById('binder'); 
+}

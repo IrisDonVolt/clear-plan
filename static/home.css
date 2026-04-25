@@ -53,7 +53,7 @@ body {
     gap: 0px; 
 }
 
-.input-button {
+.logout {
     display: inline-block;
     box-sizing: border-box;
     cursor: pointer; 
@@ -67,7 +67,7 @@ body {
     font-family: var(--secondary-font);
 }
 
-.input-button:hover {
+.logout:hover {
     background-color: var(--secondary-color);
 }
 
