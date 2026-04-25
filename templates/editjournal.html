@@ -29,7 +29,7 @@
 
         <!-- elements -->
         <div id="elements">
-            <form onsubmit="/userhome" method="POST">
+            <form action="/userhome" method="POST">
                 {% csrf_token %}
                 <div id="text-only">
                     <!-- color of journal -->
@@ -37,13 +37,13 @@
                         <p class="text">Color of Journal:</p>
                         <div class="choose-options">
                             <label for="blue" id="blue-option" class="circle" style="background-color: #1C4E78" onclick="changeBookColor(this)"></label>
-                            <input type="radio" name="book-options" value="blue" id="blue" class="input-button">
+                            <input type="radio" name="book-options" value="#1C4E78" id="blue" class="input-button">
                             <label for="green" id="green-option" class="circle" style="background-color: #31604C" onclick="changeBookColor(this)"></label>
-                            <input type="radio" name="book-options" value="green" id="green" class="input-button">
+                            <input type="radio" name="book-options" value="#31604C" id="green" class="input-button">
                             <label for="purple" id="purple-option" class="circle" style="background-color: #623889" onclick="changeBookColor(this)"></label>
-                            <input type="radio" name="book-options" value="purple" id="purple" class="input-button">
+                            <input type="radio" name="book-options" value="#623889" id="purple" class="input-button">
                             <label for="pink" id="pink-option" class="circle" style="background-color: #C263B8" onclick="changeBookColor(this)"></label>
-                            <input type="radio" name="book-options" value="pink" id="pink" class="input-button">
+                            <input type="radio" name="book-options" value="#C263B8" id="pink" class="input-button">
                         </div>
                     </div>
 
@@ -54,11 +54,11 @@
                         <p class="text">Binding color:</p>
                         <div class="choose-options">
                             <label for="black" id="black-option" class="circle" style="background-color: #000000;" onclick="changeBinderColor(this)"></label>
-                            <input type="radio" name="binder-options" value="black" id="black" class="input-button">
+                            <input type="radio" name="binder-options" value="#000000" id="black" class="input-button">
                             <label for="brown" id="brown-option" class="circle" style="background-color: #872E0B;" onclick="changeBinderColor(this)"></label>
-                            <input type="radio" name="binder-options" value="brown" id="brown" class="input-button">
+                            <input type="radio" name="binder-options" value="#872E0B" id="brown" class="input-button">
                             <label for="light-brown" id="light-brown-option" class="circle" style="background-color: #9A5A16;" onclick="changeBinderColor(this)"></label>
-                            <input type="radio" name="binder-options" value="light-brown" id="light-brown" class="input-button">
+                            <input type="radio" name="binder-options" value="#9A5A16" id="light-brown" class="input-button">
                         </div>
                     </div>
 

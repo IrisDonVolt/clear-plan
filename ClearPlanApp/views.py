@@ -46,14 +46,45 @@ def home(request):
             'current_user': current_user
         }
         
-        journal = Journal.objects.filter(userid=current_user.id)
+        current_custom_user = Users.objects.filter(username=current_user.username).values()
+        journal = Journal.objects.filter(user_name=current_custom_user['username'])
         if journal: 
-            return render(request, 'userhome.html', context)
+            return redirect('userhome')
         else: 
             return render(request, 'home.html', context)
 
 def userhome(request):
-    return render(request, 'userhome.html')
+    if request.method == 'POST': 
+        book_color = request.POST['book-options']
+        binder_color = request.POST['binder-options']
+        # get image as well 
+        
+        current_user = request.user
+        current_custom_user = Users.objects.filter(username=current_user.username).values()
+        journal = Journal.objects.filter(user_name=current_custom_user['username'])
+        if journal: 
+             journal.update(bookcolor=book_color, binder_color=binder_color)
+             journal.save()
+             
+        else: 
+            current_custom_user = Users.objects.filter(username=current_user.username).values()
+            new_journal = Journal(user_name=current_custom_user['username'], bookcolor=book_color, bindercolor=binder_color)
+            new_journal.save()
+        
+        context = {
+            'book_color': book_color, 
+            'binder_color': binder_color
+        }
+        return render(request, 'userhome.html', context=context)
+    
+    else: 
+        current_custom_user = User.objects.filter(username=request.user.username).values()
+        journal = Journal.objects.filter(user_name=current_custom_user['username'])
+        context = {
+            'book_color': journal.bookcolor, 
+            'binder_color': journal.bindercolor
+        }
+        return render(request, 'userhome.html', context=context)
     
 def editjournal(request): 
     return render(request, 'editjournal.html')
