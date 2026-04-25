@@ -10,8 +10,9 @@ class Users(models.Model):
     created_at = models.DateTimeField(default=datetime.now, blank=True)
     
 class Journal(models.Model):   
-    user_name = models.ForeignKey(Users, on_delete=models.CASCADE, default="0")
+    created_user = models.ForeignKey(Users, on_delete=models.CASCADE)
     bookcolor = models.CharField(max_length=None) 
     bindercolor = models.CharField(max_length=None) 
     coverimage = models.ImageField()
     created_at = models.DateTimeField(default=datetime.now, blank=True) 
+    
