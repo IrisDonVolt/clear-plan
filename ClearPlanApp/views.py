@@ -47,7 +47,7 @@ def home(request):
         }
         
         current_custom_user = Users.objects.get(username=current_user.username)
-        journal = Journal.objects.filter(created_user=current_custom_user)
+        journal = Journal.objects.filter(user_name=current_custom_user)
         if journal.exists():
             return redirect('userhome')
         else: 
@@ -61,14 +61,14 @@ def userhome(request):
         
         current_user = request.user
         current_custom_user = Users.objects.get(username=current_user.username)
-        journal = Journal.objects.filter(created_user=current_custom_user)
+        journal = Journal.objects.filter(user_name=current_custom_user)
         if journal.exists():
              journal.update(bookcolor=book_color, binder_color=binder_color)
              journal.save()
              
         else: 
             current_custom_user = Users.objects.get(username=current_user.username)
-            new_journal = Journal(created_user=current_custom_user, bookcolor=book_color, bindercolor=binder_color)
+            new_journal = Journal(user_name=current_custom_user, bookcolor=book_color, bindercolor=binder_color)
             new_journal.save()
         
         context = {
@@ -79,7 +79,7 @@ def userhome(request):
     
     else: 
         current_custom_user = User.objects.get(username=request.user.username)
-        journal = Journal.objects.get(created_user=current_custom_user)
+        journal = Journal.objects.get(user_name=current_custom_user)
         context = {
             'book_color': journal.bookcolor, 
             'binder_color': journal.bindercolor

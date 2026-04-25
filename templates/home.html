@@ -12,7 +12,7 @@
     {% comment %} {% if mode == "new" %} {% endcomment %} 
     <body>
         <div class="header">
-            <form action="{% url 'logout' %}" method="POST">
+            <form onsubmit="{% url 'logout' %}" method="POST">
                 {% csrf_token %}
                 <label for="logout-button" class="logout">Logout</label>
                 <input class="input-button" type="submit">
