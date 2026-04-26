@@ -2,7 +2,7 @@ from django.db import models
 from datetime import datetime
 
 # Create your models here.
-class Users(models.Model):
+class Custom_Users(models.Model):
     username = models.CharField(max_length=None, primary_key=True) # string 
     theme = models.CharField(max_length=None) # string 
     font = models.CharField(max_length=None)
@@ -10,7 +10,7 @@ class Users(models.Model):
     created_at = models.DateTimeField(default=datetime.now, blank=True)
     
 class Journal(models.Model):   
-    user_name = models.ForeignKey(Users, on_delete=models.CASCADE)
+    user_name = models.ForeignKey(Custom_Users, on_delete=models.CASCADE)
     bookcolor = models.CharField(max_length=None) 
     bindercolor = models.CharField(max_length=None) 
     coverimage = models.ImageField()

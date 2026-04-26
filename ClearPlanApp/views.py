@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages 
-from .models import Users, Journal
+from .models import Custom_Users, Journal
 
 # Create your views here.
 def firstpage(request):
@@ -25,8 +25,8 @@ def register(request):
             user = User.objects.create_user(username=username, email=email, password=password)
             user.save()
             
-            # create user object in Users database 
-            user_object = Users(
+            # create user object in Custom_Users database 
+            user_object = Custom_Users(
                 username=username, 
                 theme="default",
                 font="default",
@@ -46,7 +46,7 @@ def home(request):
             'current_user': current_user
         }
         
-        current_custom_user = Users.objects.get(username=current_user.username)
+        current_custom_user = Custom_Users.objects.get(username=current_user.username)
         journal = Journal.objects.filter(user_name=current_custom_user)
         if journal.exists():
             return redirect('userhome')
@@ -60,14 +60,14 @@ def userhome(request):
         # get image as well 
         
         current_user = request.user
-        current_custom_user = Users.objects.get(username=current_user.username)
+        current_custom_user = Custom_Users.objects.get(username=current_user.username)
         journal = Journal.objects.filter(user_name=current_custom_user)
         if journal.exists():
              journal.update(bookcolor=book_color, binder_color=binder_color)
              journal.save()
              
         else: 
-            current_custom_user = Users.objects.get(username=current_user.username)
+            current_custom_user = Custom_Users.objects.get(username=current_user.username)
             new_journal = Journal(user_name=current_custom_user, bookcolor=book_color, bindercolor=binder_color)
             new_journal.save()
         
@@ -78,7 +78,7 @@ def userhome(request):
         return render(request, 'userhome.html', context=context)
     
     else: 
-        current_custom_user = User.objects.get(username=request.user.username)
+        current_custom_user = Custom_Users.objects.get(username=request.user.username)
         journal = Journal.objects.get(user_name=current_custom_user)
         context = {
             'book_color': journal.bookcolor, 
