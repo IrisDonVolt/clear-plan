@@ -1,3 +1,5 @@
 # cached bytecode to make the interpreter faster 
 
 *.pyc
+
+/ClearPlanApp/migrations/
