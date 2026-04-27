@@ -4,6 +4,13 @@ from django.contrib import messages
 from .models import Users, Journal
 from django.http import HttpResponse
 
+
+# test view to send http responses aobut variables 
+def testplate(request): 
+    if request.method == 'POST': 
+        var1 = request.POST['lightwash']
+        return HttpResponse(var1) 
+
 # Create your views here.
 def firstpage(request):
     return render(request, "firstpage.html")
@@ -107,3 +114,6 @@ def editjournal(request):
         }
         
     return render(request, 'editjournal.html', context=context)
+
+def themes(request): 
+    return render(request, 'themes.html')

@@ -11,6 +11,32 @@
     --secondary-font: 'Verdana', Geneva, Tahoma, sans-serif; 
 }
 
+@font-face {
+    font-family: "fmn_font";
+    /* src: url('assets/fonts/fertigo_fmn.ttf') format('truetype'); */
+    src: url('/static/fertigo_fmn.ttf');
+}
+
+@font-face {
+    font-family: "strawberry_font";
+    src: url('/static/craftcoke_strawberry.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "sage_font"; 
+    src: url('/static/times_new_roman.ttf') format('truetype'); 
+}
+
+@font-face {
+    font-family: "comic_sans";
+    src: url('/static/comic_sans.ttf') format('truetype'); 
+}
+
+@font-face {
+    font-family: "icecream_font";
+    src: url('/static/super_adorable_icecream.ttf') format('truetype');
+}
+
 .main-heading {
     font-family: var(--primary-font); 
     font-weight: bold;

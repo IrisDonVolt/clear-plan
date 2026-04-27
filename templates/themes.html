@@ -1,0 +1,150 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ClearPlan - Themes</title>
+        <link rel="icon" href="{% static 'logo.svg' %}" type="image/x-icon">
+        <link rel="stylesheet" href="{% static 'mainstyles.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'themes.css' %}" type="text/css">
+        <script src="{% static 'themes.js' %}" defer></script>
+    </head>
+
+    <body>
+        <div class="header">
+            <div id="home-button" onclick="location.href='/home'">
+                <div id="background-circle">
+                    <img src="{% static 'home_icon.svg' %}" width="58" height="58">
+                </div>
+            </div>
+
+            <!-- page title -->
+            <div id="page-title" class="main-heading">
+                Themes
+            </div>
+
+            <!-- save button -->
+            <form action="/testplate" method="POST">
+                {% csrf_token %}
+
+                <!-- invisible elements -->
+                <input type="hidden" name="lightwash" id="hidden-lightwash" value="">
+                <input type="hidden" name="primarycolor" id="hidden-primarycolor" value="document.body.style.getPropertyValue('--primary-color')">
+                <input type="hidden" name="secondarycolor" id="hidden-secondarycolor" value="document.body.style.getPropertyValue('--secondary-color')">   
+                <input type="hidden" name="accentcolor" id="hidden-accentcolor" value="document.body.style.getPropertyValue('--accent-color')">   
+                <input type="hidden" name="primaryfont" id="hidden-primaryfont" value="document.body.style.getPropertyValue('--primary-font')">    
+
+                <!-- visible element -->
+                <label for="save-button" class="save-button">Save</label>
+                <input id="save-button" class="input-button" type="submit">
+            </form>
+        </div>
+
+        <!-- themes page starts here -->
+        <div id="colorful-themes">
+            <div class="subheading">Colorful Themes</div>
+            <div class="color-themes-body">
+
+                <!-- waffle theme -->
+                <div class="theme" id="waffle-theme">
+                    <div class="theme-image">
+                        <img src="{% static 'waffle.png' %}" 
+                             id="waffle-theme-image" 
+                             class="image-source" 
+                             onclick="changeTheme(this)"> 
+                    </div>
+                    <div class="text" id="waffle-theme-title">Waffle</div>
+                </div>
+
+                <!-- icecream theme -->
+                <div class="theme" id="icecream-theme">
+                    <div class="theme-image">
+                        <img src="{% static 'icecream.png' %}" 
+                             id="icecream-theme-image" 
+                             class="image-source" 
+                             onclick="changeTheme(this)">
+                    </div>
+                    <div class="text" id="icecream-theme-title">Icecream</div>
+                </div>
+
+                <!-- sage theme -->
+                <div class="theme" id="sage-theme">
+                    <div class="theme-image">
+                        <img src="{% static 'sage.png' %}" 
+                             id="sage-theme-image" 
+                             class="image-source" 
+                             onclick="changeTheme(this)">
+                    </div>
+                    <div class="text" id="sage-theme-title">Sage</div>
+                </div>
+
+                <!-- strawberry theme -->
+                <div class="theme" id="strawberry-theme">
+                    <div class="theme-image">
+                        <img src="{% static 'strawberry.png' %}" 
+                             id="strawberry-theme-image" 
+                             class="image-source" 
+                             onclick="changeTheme(this)">
+                    </div>
+                    <div class="text" id="strawberry-theme-title">Strawberry</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- accessible themes -->
+        <div id="accessible-themes-section">
+            <div class="accessible-theme-structure" id="cvd-themes">
+                <div class="subheading">CVD-friendly Themes</div>
+                <div class="accessible-themes-body">
+
+                    <!-- fmn theme -->
+                    <div class="theme" id="fmn-theme">
+                        <div class="theme-image">
+                            <img src="{% static 'fmn.png' %}" 
+                             id="fmn-theme-image" 
+                             class="image-source" 
+                             onclick="changeTheme(this)">
+                        </div>
+                        <div class="text" id="fmn-theme-title">Forget Me not</div>
+                    </div>
+
+                    <!-- black and white theme -->
+                    <div class="theme" id="bw-theme">
+                        <div class="theme-image">
+                            <img src="{% static 'bw.png' %}" 
+                             id="bw-theme-image" 
+                             class="image-source" 
+                             onclick="changeTheme(this)">
+                        </div>
+                        <div class="text" id="bw-theme-title">B & W</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accessible-theme-structure" id="dyslexic-fonts">
+                <div class="subheading">Dyslexic Fonts</div>
+                <div class="accessible-themes-body">
+                    <div class="theme" id="dys-font-1">
+                        <div class="theme-image">
+                            <img src="{% static 'verdana.png' %}" 
+                             id="dys-font-1-image" 
+                             onclick="changeTheme(this)">
+                        </div>
+                        <div class="text" id="dys-font-1-title">Verdana</div>
+                    </div>
+                    <div class="theme" id="dys-font-2">
+                        <div class="theme-image">
+                            <img src="{% static 'comic_sans.png' %}" 
+                             id="dys-font-2-image" 
+                             onclick="changeTheme(this)">
+                        </div>
+                        <div class="text" id="dys-font-2-title">Comic Sans</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        </div>
+    </body>
+</html>

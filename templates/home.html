@@ -9,7 +9,6 @@
         <link rel="stylesheet" href="{% static 'home.css' %}" type="text/css">
     </head>
 
-    {% comment %} {% if mode == "new" %} {% endcomment %} 
     <body>
         <div class="header">
             <form onsubmit="{% url 'logout' %}" method="POST">

@@ -1,0 +1,174 @@
+:root {
+    --primary-color: #872E0B; 
+    --secondary-color: #9A5A16; 
+    --accent-color: #000000; 
+    --lightwash: #FFDAB7; 
+    --app-blue: #1C4E78;
+    --app-green: #31604C; 
+    --app-purple: #623889;
+    --app-pink: #C263B8;
+    --primary-font: 'Courier New', Courier, monospace; 
+    --secondary-font: 'Verdana', Geneva, Tahoma, sans-serif; 
+
+}
+
+body { 
+    background-color: var(--lightwash);
+    background-image: radial-gradient(
+        #00000013 2px, 
+        transparent 4.5px
+    ); 
+    background-size: 50px 50px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 30px;
+    gap: 100px; 
+    flex-wrap: wrap; 
+}
+
+.header {
+    display: flex; 
+    justify-content: flex-start; 
+    align-items: center; 
+    width: 100%; 
+    height: 95px; 
+    padding: 0px; 
+    gap: 0px;
+}
+
+.theme {
+    width: fit-content; 
+    height: fit-content; 
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    gap: 25px;
+    text-align: center;  
+}
+
+.theme-image {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 150px;
+    height: 150px; 
+    background-color: #ffffff00
+}
+
+.theme-image:hover {
+    opacity: 50%;
+}
+
+.image-source {
+    width: 100%; 
+    height: 100%; 
+}
+
+.accessible-theme-structure {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    width: 100%; 
+    height: fit-content; 
+    padding: 0px; 
+    gap: 30px; 
+}
+
+.color-themes-body {
+    box-sizing: border-box;
+    display:flex; 
+    flex-direction: row; 
+    width: 100%; 
+    height: fit-content;
+    justify-content: space-between;
+    padding: 0px 50px 0px 50px; 
+}
+
+.accessible-themes-body {
+    box-sizing: border-box; 
+    display: flex; 
+    flex-direction: row; 
+    width: 100%; 
+    height: fit-content; 
+    justify-content: space-around;
+    padding: 0px; 
+}
+
+.save-button {
+    display: inline-block;
+    box-sizing: border-box;
+    cursor: pointer; 
+    height: fit-content;
+    width: fit-content; 
+    padding: 10px 20px 10px 20px;
+    background-color: var(--primary-color); 
+    border-radius: 30px;
+    font-size: 24px;
+    color: #FFFFFF; 
+    font-family: var(--secondary-font);
+}
+
+.save-button:hover {
+    background-color: var(--secondary-color);
+}
+
+#background-circle {
+    width: 95px; 
+    height: 95px; 
+    background-color: var(--primary-color);
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    border-radius: 66px;
+}
+
+#background-circle:hover {
+    background-color: var(--secondary-color);
+}
+
+#page-title {
+    width: 100%; 
+    height: 95px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px; 
+}
+
+#colorful-themes {
+    box-sizing: border-box; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-start;
+    align-items: center; 
+    width: 100%; 
+    height: fit-content; 
+    padding: 0px 30px 0px 30px; 
+    gap: 30px; 
+}
+
+
+#accessible-themes-section {
+    box-sizing: border-box;
+    display: flex; 
+    flex-direction: row;
+    justify-content: center; 
+    align-items: center; 
+    width: 100%; 
+    height: fit-content; 
+    padding: 0px 50px 0px 50px; 
+    gap: 100px; 
+}
+
+/* individual theme options */ 
+
+/* blue theme */ 
+#theme-1-image {
+    background-color: #4988C4; 
+    border: var(--app-blue) solid 3px; 
+}
