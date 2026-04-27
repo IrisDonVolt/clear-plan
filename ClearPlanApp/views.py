@@ -105,5 +105,5 @@ def editjournal(request):
             'book_color': '#1C4E78', 
             'binder_color': '#000000'
         }
-    
+        
     return render(request, 'editjournal.html', context=context)

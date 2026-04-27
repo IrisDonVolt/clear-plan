@@ -95,18 +95,6 @@ body {
     gap: 30px; 
 }
 
-#image-placeholder {
-    width: 90px; 
-    height: 90px; 
-    background-color: #FFFFFF; 
-    margin-top: 0px; 
-}
-
-#display-image {
-    width: 100%; 
-    height: 100%; 
-}
-
 #background-circle {
     width: 95px; 
     height: 95px; 

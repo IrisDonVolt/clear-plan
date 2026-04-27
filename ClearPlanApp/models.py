@@ -12,7 +12,6 @@ class Users(models.Model):
 class Journal(models.Model):   
     user_name = models.CharField(max_length=None, primary_key=True, default="no_user")
     bookcolor = models.CharField(max_length=None) 
-    bindercolor = models.CharField(max_length=None) 
-    coverimage = models.ImageField()
+    bindercolor = models.CharField(max_length=None)
     created_at = models.DateTimeField(default=datetime.now, blank=True) 
     

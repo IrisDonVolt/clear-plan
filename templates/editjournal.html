@@ -11,7 +11,7 @@
         <script src = {% static "editjournal.js" %} defer></script>
     </head>
 
-    <body onload="loadInfo()">
+    <body>
         <!-- header on top of the page -->
         <div class="header">
             <!-- home label -->
@@ -37,13 +37,13 @@
                         <p class="text">Color of Journal:</p>
                         <div class="choose-options">
                             <label for="blue" id="blue-option" class="circle" style="background-color: #1C4E78" onclick="changeBookColor(this)"></label>
-                            <input type="radio" name="book-options" value="#1C4E78" id="blue" class="input-button">
+                            <input type="radio" name="book-options" value="#1C4E78" id="blue" class="input-button color-option">
                             <label for="green" id="green-option" class="circle" style="background-color: #31604C" onclick="changeBookColor(this)"></label>
-                            <input type="radio" name="book-options" value="#31604C" id="green" class="input-button">
+                            <input type="radio" name="book-options" value="#31604C" id="green" class="input-button color-option">
                             <label for="purple" id="purple-option" class="circle" style="background-color: #623889" onclick="changeBookColor(this)"></label>
-                            <input type="radio" name="book-options" value="#623889" id="purple" class="input-button">
+                            <input type="radio" name="book-options" value="#623889" id="purple" class="input-button color-option">
                             <label for="pink" id="pink-option" class="circle" style="background-color: #C263B8" onclick="changeBookColor(this)"></label>
-                            <input type="radio" name="book-options" value="#C263B8" id="pink" class="input-button">
+                            <input type="radio" name="book-options" value="#C263B8" id="pink" class="input-button color-option">
                         </div>
                     </div>
 
@@ -54,24 +54,15 @@
                         <p class="text">Binding color:</p>
                         <div class="choose-options">
                             <label for="black" id="black-option" class="circle" style="background-color: #000000;" onclick="changeBinderColor(this)"></label>
-                            <input type="radio" name="binder-options" value="#000000" id="black" class="input-button">
+                            <input type="radio" name="binder-options" value="#000000" id="black" class="input-button color-option">
                             <label for="brown" id="brown-option" class="circle" style="background-color: #872E0B;" onclick="changeBinderColor(this)"></label>
-                            <input type="radio" name="binder-options" value="#872E0B" id="brown" class="input-button">
+                            <input type="radio" name="binder-options" value="#872E0B" id="brown" class="input-button color-option">
                             <label for="light-brown" id="light-brown-option" class="circle" style="background-color: #9A5A16;" onclick="changeBinderColor(this)"></label>
-                            <input type="radio" name="binder-options" value="#9A5A16" id="light-brown" class="input-button">
+                            <input type="radio" name="binder-options" value="#9A5A16" id="light-brown" class="input-button color-option">
                         </div>
                     </div>
 
                     <hr>
-
-                    <!-- display image -->
-                    <div id="display-image" class="list-of-options">
-                        <p class="text">Display image:</p>
-                        <div class="choose-options">
-                            <label for="choose-book-image-label" class="custom-file-upload">Choose file</label>
-                            <input id="choose-book-image-button" class="input-button" type="file" accept="image/*">
-                        </div>
-                    </div>
 
                     <label for="save-label" class="save">Save</label>
                     <input id="save-label" type="submit" class="input-button">
@@ -80,13 +71,14 @@
 
             <!-- book preview -->
             <div id="book-preview">
+                <div id="placeholder-text" class="error-message-container">
+                    <img src="{% static 'warning.png' %}">
+                    <div class="error-content">Select a color to build your journal.</div>
+                </div>
                 <div id="binder" style="background-color: {{binder_color}};"></div>
                 <div id="book" style="background-color: {{book_color}};">
                     <div class="book-text" id="display-text-on-book">This book belongs to:</div>
-                    <div class="book-text" id="display-username-on-book">Username</div>
-                    <div id="image-placeholder">
-                        <img id="display-image" src="{% static 'logo.png' %}">
-                    </div>
+                    <div class="book-text" id="display-username-on-book">{{user.username}}</div>
                 </div>
             </div>
         </div>
