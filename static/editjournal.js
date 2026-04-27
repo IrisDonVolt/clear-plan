@@ -10,7 +10,7 @@ function changeBinderColor(button) {
     binder_div.style.backgroundColor = color;
 }
 
-function saveInfo() {
-    var book_color = document.getElementById('book');
-    var binder_color = document.getElementById('binder'); 
+function loadInfo() {
+    // get the colors of the book and binder and auto select buttons
+    // as per the button 
 }

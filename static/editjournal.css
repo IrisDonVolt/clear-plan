@@ -180,7 +180,6 @@ hr {
 #binder { 
     width: 50px; 
     height: 450px; 
-    background-color: var(--accent-color); 
     border-radius: 10px 0px 0px 10px;
 }
 
@@ -189,8 +188,7 @@ hr {
     display: flex;
     flex-direction: column;  
     justify-content: flex-start;
-    align-items: center;
-    background-color: var(--app-blue); 
+    align-items: center; 
     width: 300px; 
     height: 450px; 
     border-radius: 0 30px 30px 0; 

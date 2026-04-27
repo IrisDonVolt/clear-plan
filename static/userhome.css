@@ -12,12 +12,13 @@ body {
         #00000013 2px,
         transparent 4.5px
     );
+    box-sizing: border-box;
     background-size: 50px 50px; 
     display: flex; 
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding: 50px;  
+    padding: 30px;  
     height: 100%;
     width: 100%;
     gap: 0px; 
@@ -53,6 +54,15 @@ body {
     font-size: 20px; 
     color: white; 
     text-align: center;
+}
+
+.button-holder {
+    display: flex; 
+    flex-direction: row;
+    width: fit-content; 
+    height: fit-content;
+    padding: 0px; 
+    gap: 50px; 
 }
 
 #book-preview {

@@ -11,7 +11,7 @@
         <script src = {% static "editjournal.js" %} defer></script>
     </head>
 
-    <body>
+    <body onload="loadInfo()">
         <!-- header on top of the page -->
         <div class="header">
             <!-- home label -->
@@ -80,8 +80,8 @@
 
             <!-- book preview -->
             <div id="book-preview">
-                <div id="binder"></div>
-                <div id="book">
+                <div id="binder" style="background-color: {{binder_color}};"></div>
+                <div id="book" style="background-color: {{book_color}};">
                     <div class="book-text" id="display-text-on-book">This book belongs to:</div>
                     <div class="book-text" id="display-username-on-book">Username</div>
                     <div id="image-placeholder">

@@ -48,7 +48,7 @@ def home(request):
         }
         
         current_custom_user = Users.objects.get(username=current_user.username)
-        journal = Journal.objects.filter(user_name=current_custom_user)
+        journal = Journal.objects.filter(user_name=current_custom_user.username)
         if journal.exists():
             return redirect('userhome')
         else: 
@@ -62,14 +62,18 @@ def userhome(request):
         
         current_user = request.user
         current_custom_user = Users.objects.get(username=current_user.username)
-        journal = Journal.objects.filter(user_name=current_custom_user)
+        journal = Journal.objects.filter(user_name=current_custom_user.username)
         if journal.exists():
-             journal.update(bookcolor=book_color, bindercolor=binder_color)
+            journal.update(bookcolor=book_color, bindercolor=binder_color)
              
         else: 
             current_custom_user = Users.objects.get(username=current_user.username)
-            new_journal = Journal(user_name=current_custom_user, bookcolor=book_color, bindercolor=binder_color)
-            new_journal.save()
+            try: 
+                new_journal = Journal(user_name=current_custom_user.username, bookcolor=book_color, bindercolor=binder_color)
+                new_journal.save()
+                
+            except: 
+                return HttpResponse(current_custom_user) 
         
         context = {
             'book_color': book_color, 
@@ -79,7 +83,7 @@ def userhome(request):
     
     else: 
         current_custom_user = Users.objects.get(username=request.user.username)
-        journal = Journal.objects.get(user_name=current_custom_user)
+        journal = Journal.objects.get(user_name=current_custom_user.username)
         context = {
             'book_color': journal.bookcolor, 
             'binder_color': journal.bindercolor
@@ -87,4 +91,19 @@ def userhome(request):
         return render(request, 'userhome.html', context=context)
     
 def editjournal(request): 
-    return render(request, 'editjournal.html')
+    current_custom_user = Users.objects.get(username=request.user.username)
+    journal_queryset = Journal.objects.filter(user_name=current_custom_user.username)
+    if journal_queryset.exists():
+        journal = Journal.objects.get(user_name=current_custom_user.username)
+        context = {
+            'book_color': journal.bookcolor, 
+            'binder_color': journal.bindercolor
+        }
+    
+    else: 
+        context = {
+            'book_color': '#1C4E78', 
+            'binder_color': '#000000'
+        }
+    
+    return render(request, 'editjournal.html', context=context)
