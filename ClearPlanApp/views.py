@@ -6,10 +6,15 @@ from django.http import HttpResponse
 
 
 # test view to send http responses aobut variables 
-def testplate(request): 
+def updatetheme(request): 
     if request.method == 'POST': 
-        var1 = request.POST['lightwash']
-        return HttpResponse(var1) 
+        lightwash = request.POST['lightwash']
+        primarycolor = request.POST['primarycolor']
+        secondarycolor = request.POST['secondarycolor']
+        accentcolor = request.POST['accentcolor']
+        primaryfont = request.POST['primaryfont']
+        
+        
 
 # Create your views here.
 def firstpage(request):
@@ -117,3 +122,6 @@ def editjournal(request):
 
 def themes(request): 
     return render(request, 'themes.html')
+
+def calendar(request): 
+    return render(request, 'calendar.html')

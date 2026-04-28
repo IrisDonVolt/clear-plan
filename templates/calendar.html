@@ -1,0 +1,82 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Calendar View</title>
+        <link rel="icon" href="{% static 'logo.svg' %}" type="image/x-icon">
+        <link rel="stylesheet" href="{% static 'mainstyles.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'calendar.css' %}" type="text/css"> 
+
+        <script src="{% static 'calendar.js' %}" defer></script>
+    </head>
+
+    <body>
+        <div class="header">
+            <!-- home button -->
+            <div id="home-button" onclick="location.href = 'userhome'">
+                <div id="background-circle">
+                    <img src="{% static 'home_icon.svg' %}" width="58" height="58">
+                </div>
+            </div>
+
+            <!-- page title -->
+            <div id="page-title" class="main-heading">
+                Calendar
+            </div>
+        </div>
+
+        <!-- content of the page -->
+        <div class="element-flex-box" id="element-flex-box">
+            <div class="calendar-container">
+                <!-- calendar code -->
+                <div class="calendar-header">
+                    <button id="prevButton" class="calendar-buttons">&#10094;</button>
+                    <div id="monthYear" class="calendar-text"></div>
+                    <button id="nextButton" class="calendar-buttons">&#10095;</button>
+
+                </div>
+
+                <div class="calendar-body">
+                    <div class="days-of-the-week">
+                        <div class="day calendar-text">S</div>
+                        <div class="day calendar-text">M</div>
+                        <div class="day calendar-text">T</div>
+                        <div class="day calendar-text">W</div>
+                        <div class="day calendar-text">T</div>
+                        <div class="day calendar-text">F</div>
+                        <div class="day calendar-text">S</div>
+                    </div>
+
+                    <div class="days" id="days"></div>
+                </div>
+            </div>
+
+            <!-- information display -->
+            <div class="information-display">
+                <div class="text" id="date-display">&ensp;</div>
+                <div class="text" id="pages-created">Pages created:</div>
+                <div class="text" id="entities-created">Entities created:</div>
+            </div>
+        </div>
+
+        <div class="complete-bottom-bar" id="complete-bottom-bar">
+            <div class="taskbar" id="taskbar">
+                <button class="taskbar-button" onclick="location.href='canvas_board.html'">Today</button>
+                <button class="add-entity">+</button>
+                <button class="taskbar-button">Calendar</button>
+            </div>
+
+            <div class="dropdown">
+                <div class="position-toggle-button" id="position-toggle-button"  onclick="settingsDropdown()">
+                    <img src="{% static 'settings.svg' %}">
+                </div>
+                <div class="dropdown-content" id="dropdown-content">
+                    <div class="toggle-options" id="toggle-option-left" onclick="positionToggle('left')">Move taskbar to left</div>
+                    <div class="toggle-options" id="toggle-option-right" onclick="positionToggle('right')">Move taskbar to right</div>
+                    <div class="toggle-options" id="toggle-option-bottom" onclick="positionToggle('bottom')">Move taskbar to bottom</div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
