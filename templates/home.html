@@ -7,15 +7,24 @@
         <link rel="icon" href="{% static 'logo.svg' %}" type="image/x-icon">
         <link rel="stylesheet" href="{% static 'mainstyles.css' %}" type="text/css">
         <link rel="stylesheet" href="{% static 'home.css' %}" type="text/css">
+
+        <script src="{% static 'loadThemes.js' %}"></script>
+        <script src="{% static 'loadLogo.js' %}"></script>
     </head>
 
     <body>
         <div class="header">
-            <form onsubmit="{% url 'logout' %}" method="POST">
+            <form action="{% url 'logout' %}" method="POST">
                 {% csrf_token %}
                 <label for="logout-button" class="logout">Logout</label>
-                <input class="input-button" type="submit">
+                <input class="input-button" id="logout-button" type="submit">
             </form>
+
+            <div id="theme-button" onclick="location.href='themes'">
+                <div id="theme-button-bg" style="cursor: pointer;">
+                    <img src="{% static 'painting.png' %}" width="58" height="58">
+                </div>
+            </div>
         </div>
 
         <div class="content-area">
@@ -26,7 +35,19 @@
             </div>
 
             <div id="logo-box">
+                {% if primarycolor == "#872E0B" %}
                 <img id="logo" src="{% static 'logo.png' %}">
+                {% elif primarycolor == "#FF0073" %}
+                <img id="logo" src="{% static 'logo_icecream.png' %}">
+                {% elif primarycolor == "#737816" %}
+                <img id="logo" src="{% static 'logo_sage.png' %}">
+                {% elif primarycolor == "#C3324C" %}
+                <img id="logo" src="{% static 'logo_strawberry.png' %}">
+                {% elif primarycolor == "#1C4EA4" %}
+                <img id="logo" src="{% static 'logo_fmn.png' %}">
+                {% else %}
+                <img id="logo" src="{% static 'logo_bw.png' %}">
+                {% endif %}
             </div>
         </div>
     </body>

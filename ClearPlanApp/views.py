@@ -3,21 +3,7 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages 
 from .models import Users, Journal
 from django.http import HttpResponse
-
-
-# test view to send http responses aobut variables 
-def updatetheme(request): 
-    if request.method == 'POST': 
-        lightwash = request.POST['lightwash']
-        primary_color = request.POST['primarycolor']
-        secondary_color = request.POST['secondarycolor']
-        accent_color = request.POST['accentcolor']
-        primary_font = request.POST['primaryfont']
-        
-        current_custom_user = Users.objects.filter(username=request.user.username)
-        current_custom_user.update(lightwash=lightwash, primarycolor=primary_color, secondarycolor=secondary_color, accentcolor=accent_color, primaryfont=primary_font)
-        
-        return redirect('home')      
+   
 
 # Create your views here.
 def firstpage(request):
@@ -42,18 +28,17 @@ def register(request):
             user.save()
             
             # create user object in Users database 
-            user_object = Users(
-                username=username, 
-                theme="default",
-                font="default",
-                taskbar_pref="default" 
-            )
+            user_object = Users(username=username)
             user_object.save()       
             return redirect('login')
             
             
     else: 
-        return render(request, 'register.html')
+        primarycolor = request.COOKIES.get('primarycolor')
+        context = {
+            'primarycolor': primarycolor
+        }
+        return render(request, 'register.html', context)
 
 def home(request): 
     current_user = request.user 
@@ -62,6 +47,8 @@ def home(request):
             'current_user': current_user
         }
         
+        primarycolor = request.COOKIES.get('primarycolor')
+        context['primarycolor'] = primarycolor
         current_custom_user = Users.objects.get(username=current_user.username)
         journal = Journal.objects.filter(user_name=current_custom_user.username)
         if journal.exists():

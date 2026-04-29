@@ -7,7 +7,9 @@
         <link rel="icon" href="{% static 'logo.svg' %}" type="image/x-icon">
         <link rel="stylesheet" href="{% static 'mainstyles.css' %}" type="text/css">
         <link rel="stylesheet" href="{% static 'themes.css' %}" type="text/css">
+
         <script src="{% static 'themes.js' %}" defer></script>
+        <script src="{% static 'loadThemes.js' %}"></script>
     </head>
 
     <body>
@@ -22,22 +24,6 @@
             <div id="page-title" class="main-heading">
                 Themes
             </div>
-
-            <!-- save button -->
-            <form action="/updatetheme" method="POST">
-                {% csrf_token %}
-
-                <!-- invisible elements -->
-                <input type="hidden" name="lightwash" id="hidden-lightwash" value="">
-                <input type="hidden" name="primarycolor" id="hidden-primarycolor" value="document.body.style.getPropertyValue('--primary-color')">
-                <input type="hidden" name="secondarycolor" id="hidden-secondarycolor" value="document.body.style.getPropertyValue('--secondary-color')">   
-                <input type="hidden" name="accentcolor" id="hidden-accentcolor" value="document.body.style.getPropertyValue('--accent-color')">   
-                <input type="hidden" name="primaryfont" id="hidden-primaryfont" value="document.body.style.getPropertyValue('--primary-font')">
-
-                <!-- visible element -->
-                <label for="save-button" class="save-button">Save</label>
-                <input id="save-button" class="input-button" type="submit">
-            </form>
         </div>
 
         <!-- themes page starts here -->

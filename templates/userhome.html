@@ -7,7 +7,8 @@
         <link rel="icon" href="{% static 'logo.svg' %}" type="image/x-icon">
         <link rel="stylesheet" href="{% static 'mainstyles.css' %}" type="text/css">
         <link rel="stylesheet" href="{% static 'userhome.css' %}" type="text/css">
-    </head>
+
+        <script src="{% static 'loadThemes.js' %}"></script>
 
     <body>
         <!-- header on top of the page -->
@@ -21,6 +22,18 @@
             <!-- page title -->
             <div id="page-title" class="main-heading">
                 Home
+            </div>
+
+            <form action="{% url 'logout' %}" method="POST">
+                {% csrf_token %}
+                <label for="logout-button" class="logout">Logout</label>
+                <input class="input-button" id="logout-button" type="submit">
+            </form>
+
+            <div id="theme-button" onclick="location.href='themes'">
+                <div id="theme-button-bg" style="cursor: pointer;">
+                    <img src="{% static 'painting.png' %}" width="58" height="58">
+                </div>
             </div>
         </div>
 
