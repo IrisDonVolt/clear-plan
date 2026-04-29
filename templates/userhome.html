@@ -6,7 +6,7 @@
         <title>ClearPlan - Home</title>
         <link rel="icon" href="{% static 'logo.svg' %}" type="image/x-icon">
         <link rel="stylesheet" href="{% static 'mainstyles.css' %}" type="text/css">
-        <link rel="stylesheet" href="{% static 'userhome.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% url 'userhome' %}">
     </head>
 
     <body>
@@ -27,8 +27,8 @@
         <!-- content -->
         <div class="book-area">
             <div id="book-preview">
-                <div id="binder" style="background-color: {{binder_color}}"></div>
-                <div id="book" style="background-color: {{book_color}}">
+                <div id="binder"></div>
+                <div id="book">
                     <div class="book-text" id="display-text-on-book">This book belongs to:</div>
                     <div class="book-text" id="display-username-on-book">{{user.username}}</div>
                 </div>

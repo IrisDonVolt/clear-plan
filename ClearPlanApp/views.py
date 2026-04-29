@@ -3,6 +3,18 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages 
 from .models import Users, Journal
 from django.http import HttpResponse
+from django.template.response import TemplateResponse
+
+# function to retrieve themes
+def retrieveThemes(current_custom_user): 
+    lightwash = current_custom_user.lightwash
+    primarycolor = current_custom_user.primarycolor
+    secondarycolor = current_custom_user.primarycolor
+    accentcolor = current_custom_user.primarycolor
+    primaryfont = current_custom_user.primaryfont 
+    
+    return lightwash, primarycolor, secondarycolor, accentcolor, primaryfont
+        
 
 
 # test view to send http responses aobut variables 
@@ -70,40 +82,63 @@ def home(request):
             return render(request, 'home.html', context)
 
 def userhome(request):
+    current_user = request.user
+    current_custom_user = Users.objects.get(username=current_user.username)
+    
+    ## retrieve theme from database 
+    lightwash, primarycolor, secondarycolor, accentcolor, primaryfont = retrieveThemes(current_custom_user)
+    
     if request.method == 'POST': 
         book_color = request.POST['book-options']
         binder_color = request.POST['binder-options']
-        # get image as well 
         
-        current_user = request.user
-        current_custom_user = Users.objects.get(username=current_user.username)
         journal = Journal.objects.filter(user_name=current_custom_user.username)
         if journal.exists():
             journal.update(bookcolor=book_color, bindercolor=binder_color)
              
         else: 
-            current_custom_user = Users.objects.get(username=current_user.username)
             try: 
                 new_journal = Journal(user_name=current_custom_user.username, bookcolor=book_color, bindercolor=binder_color)
                 new_journal.save()
                 
             except: 
-                return HttpResponse(current_custom_user) 
+                return HttpResponse("Error retrieving journal.") 
         
         context = {
             'book_color': book_color, 
-            'binder_color': binder_color
+            'binder_color': binder_color,
+            'lightwash': lightwash,
+            'primary_color': primarycolor,
+            'secondary_color': secondarycolor,
+            'accent_color': accentcolor,
+            'primary_font': primaryfont 
         }
-        return render(request, 'userhome.html', context=context)
+        
+        return TemplateResponse(
+            request, 
+            'css/userhome.css', 
+            context,
+            content_type='text/css'
+        )
     
     else: 
         current_custom_user = Users.objects.get(username=request.user.username)
         journal = Journal.objects.get(user_name=current_custom_user.username)
         context = {
             'book_color': journal.bookcolor, 
-            'binder_color': journal.bindercolor
+            'binder_color': journal.bindercolor,
+            'lightwash': lightwash,
+            'primary_color': primarycolor,
+            'secondary_color': secondarycolor,
+            'accent_color': accentcolor,
+            'primary_font': primaryfont 
         }
-        return render(request, 'userhome.html', context=context)
+        return TemplateResponse(
+            request, 
+            'css/userhome.css', 
+            context,
+            content_type='text/css'
+        )
     
 def editjournal(request): 
     current_custom_user = Users.objects.get(username=request.user.username)
