@@ -3,6 +3,7 @@ let hidden_primarycolor = document.getElementById('hidden-primarycolor');
 let hidden_secondarycolor = document.getElementById('hidden-secondarycolor'); 
 let hidden_accentcolor = document.getElementById('hidden-accentcolor'); 
 let hidden_primaryfont = document.getElementById('hidden-primaryfont'); 
+let hidden_font = document.getElementById('hidden')
 
 function changeTheme(button) {
     if (button.id == "waffle-theme-image") {

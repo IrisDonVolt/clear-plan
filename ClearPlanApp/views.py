@@ -9,12 +9,15 @@ from django.http import HttpResponse
 def updatetheme(request): 
     if request.method == 'POST': 
         lightwash = request.POST['lightwash']
-        primarycolor = request.POST['primarycolor']
-        secondarycolor = request.POST['secondarycolor']
-        accentcolor = request.POST['accentcolor']
-        primaryfont = request.POST['primaryfont']
+        primary_color = request.POST['primarycolor']
+        secondary_color = request.POST['secondarycolor']
+        accent_color = request.POST['accentcolor']
+        primary_font = request.POST['primaryfont']
         
+        current_custom_user = Users.objects.filter(username=request.user.username)
+        current_custom_user.update(lightwash=lightwash, primarycolor=primary_color, secondarycolor=secondary_color, accentcolor=accent_color, primaryfont=primary_font)
         
+        return redirect('home')      
 
 # Create your views here.
 def firstpage(request):
