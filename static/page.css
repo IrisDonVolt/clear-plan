@@ -59,12 +59,12 @@ body {
 /* ================= MAIN CANVAS ================= */
 .canvas {
     position: absolute;
-    top: 50%;
-    left: 55%;
+    top: 51%;
+    left: 54%;
     transform: translate(-50%, -50%);
 
-    width: 80%;
-    height: 70vh;
+    width: 86%;
+    height: 71vh;
 
     border: 2px solid var(--primary-color);
     border-radius: 20px;
@@ -109,7 +109,7 @@ body {
 /* ================= BOTTOM BUTONs  ================= */
 .btn {
     font-size: 20px;
-    padding: 14px 40px;
+    padding: 10px 30px;
     border-radius: 35px;
 
     background-color: var(--primary-color);
@@ -191,7 +191,7 @@ body {
     color: white;
 
     font-family: var(--secondary-font);
-    font-size: 14px;
+    font-size: 16px;
 
     cursor: pointer;
     transition: 0.3s;
@@ -248,58 +248,6 @@ body {
     width: 16px;
     height: 16px;
     flex-shrink: 0;
-}
-
-/* ================= TABLE ================= */
-.table-box {
-    position: absolute;
-    background: transparent;
-    padding: 12px;
-    border-radius: 10px;
-    z-index: 10;
-
-     resize: both;
-    overflow: hidden;
-    object-fit: contain;
-
-    min-width: 250px;
-    min-height: 150px;
-}
-
-.table-box table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-.table-box td {
-    border: 1px solid black;
-    min-width: 100px;
-    height: 40px;
-    text-align: center;
-    padding: 5px;
-    vertical-align: top;
-    font-family: var(--primary-font); 
-    font-weight: bold;
-}
-
-/* ================= IMAGE ================= */
-.image-box {
-    position: absolute;
-    padding: 5px;
-    
-    border-radius: 10px;
-    resize: both;
-    overflow: hidden;
-    min-width: 100px;
-    min-height: 100px;
-    z-index: 10;
-}
-
-.image-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border-radius: 8px;
 }
 
 /* ================= DELETE BUTTON ================= */
