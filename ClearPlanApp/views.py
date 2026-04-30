@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages 
-from .models import Users, Journal
+from .models import Users, Journal, Page, Note, Taskbox, TaskItem
 from django.http import HttpResponse
 from datetime import datetime 
+
    
 
 # Create your views here.
@@ -117,11 +118,20 @@ def themes(request):
 def calendar(request): 
     return render(request, 'calendar.html')
 
-def page(request): 
+def redirectToPage(request): 
     if request.method == "POST":
         date = request.POST['selected-date']
-        context = {
-            'date_value': date
-        }
         
-        return render(request, 'page.html', context=context)
+        # check if page exists otherwise create new page 
+        page = Page.objects.filter(date=date)
+        if not page.exists(): 
+            current_custom_user = Users.objects.get(username=request.user.username)
+            current_journal = Journal.objects.get(user_name=current_custom_user.username)
+            new_page = Page(journal=current_journal, date=date)
+            new_page.save()
+        
+        return redirect(f"page/{date}/1")
+    
+def page(request, date, pgno): 
+    context = {'date_value': date, 'pgno': pgno}
+    return render(request, 'page.html', context=context)

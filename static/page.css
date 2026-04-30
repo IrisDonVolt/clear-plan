@@ -107,7 +107,7 @@ body {
 }
 
 /* ================= BOTTOM BUTONs  ================= */
-.save-btn {
+.btn {
     font-size: 20px;
     padding: 14px 40px;
     border-radius: 35px;
@@ -119,7 +119,7 @@ body {
     font-family: var(--secondary-font);
 }
 
-.save-btn:hover {
+.btn:hover {
     transform: scale(1.08);
     background-color: var(--secondary-color);
 }

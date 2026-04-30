@@ -63,9 +63,9 @@
 
         <div class="complete-bottom-bar" id="complete-bottom-bar">
             <div class="taskbar" id="taskbar">
-                <form action="/page" method="POST">
+                <form action="/redirectToPage" method="POST">
                     {% csrf_token %}
-                    <input type="hidden" name="selected-date" id="selected-date" value="{{date}}">
+                    <input type="hidden" name="selected-date" id="selected-date">
                     <label for="open-button" class="taskbar-button" onclick="location.href='page'">Open</label>
                     <input class="input-button" type="submit" id="open-button">
                 </form>

@@ -168,7 +168,7 @@ function selectedDate(date) {
     var monthName = monthYear.substring(0, monthYear.indexOf(' ')); 
     var monthBuilder = monthArray[monthName] + 1
 
-    dateBuilderWithFormat = day + "/" + monthBuilder + "/" + yearBuilder; 
+    dateBuilderWithFormat = day + "-" + monthBuilder + "-" + yearBuilder; 
     // var dateBuilder = new Date(yearBuilder, monthBuilder, day);
     // var dateBuilderWithFormat = dateBuilder.getDay() + "/" + dateBuilder.getMonth() + "/" + dateBuilder.getFullYear(); 
     alert(dateBuilderWithFormat); 

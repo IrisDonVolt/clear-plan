@@ -9,5 +9,6 @@ urlpatterns = [
     path('editjournal', views.editjournal, name='editjournal'), 
     path('themes', views.themes, name='themes'), 
     path('calendar', views.calendar, name='calendar'), 
-    path('page', views.page, name='page')
+    path('redirectToPage', views.redirectToPage, name='redirectToPage'), 
+    path('page/<str:date>/<int:pgno>', views.page, name='page')
 ]
