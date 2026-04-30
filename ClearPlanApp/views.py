@@ -3,6 +3,7 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages 
 from .models import Users, Journal
 from django.http import HttpResponse
+from datetime import datetime 
    
 
 # Create your views here.
@@ -115,3 +116,12 @@ def themes(request):
 
 def calendar(request): 
     return render(request, 'calendar.html')
+
+def page(request): 
+    if request.method == "POST":
+        date = request.POST['selected-date']
+        context = {
+            'date_value': date
+        }
+        
+        return render(request, 'page.html', context=context)

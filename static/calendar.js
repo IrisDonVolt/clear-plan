@@ -3,6 +3,23 @@ var nextButton = document.getElementById('nextButton');
 var monthYear = document.getElementById('monthYear'); 
 var daysContainer = document.getElementById('days');
 var selectDate = null; 
+var display_pages_created = document.getElementById('pages-created'); 
+var display_entities_created = document.getElementById('entities-created'); 
+
+var monthArray = {
+    'January': 0, 
+    'February': 1, 
+    'March': 2, 
+    'April': 3, 
+    'May': 4, 
+    'June': 5, 
+    'July': 6, 
+    'August': 7, 
+    'September': 8, 
+    'October': 9, 
+    'November': 10, 
+    'December': 11
+}
 
 var currentDate = new Date(); 
 // var month = null;  
@@ -141,9 +158,21 @@ nextButton.addEventListener('click', () => {
 }); 
 
 function selectedDate(date) {
+    display_pages_created.style.display = "inline"; 
+    display_entities_created.style.display = "inline"; 
+
     var day = date.textContent; 
-    var month = document.getElementById('monthYear').textContent; 
-    document.getElementById('date-display').textContent = day + " " + month;
+    var monthYear = document.getElementById('monthYear').textContent; 
+    document.getElementById('date-display').textContent = day + " " + monthYear;
+    var yearBuilder = monthYear.slice(-4).toString(); 
+    var monthName = monthYear.substring(0, monthYear.indexOf(' ')); 
+    var monthBuilder = monthArray[monthName] + 1
+
+    dateBuilderWithFormat = day + "/" + monthBuilder + "/" + yearBuilder; 
+    // var dateBuilder = new Date(yearBuilder, monthBuilder, day);
+    // var dateBuilderWithFormat = dateBuilder.getDay() + "/" + dateBuilder.getMonth() + "/" + dateBuilder.getFullYear(); 
+    alert(dateBuilderWithFormat); 
+    document.getElementById('selected-date').setAttribute('value', dateBuilderWithFormat); 
 }
     
 

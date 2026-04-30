@@ -1,0 +1,53 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page</title>
+    <link rel="stylesheet" href="{% static 'page.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'mainstyles.css' %}" type="text/css">
+
+    <script src="{% static 'page.js' %}" defer></script>
+    <script src="{% static 'loadThemes.js' %}" defer></script>
+</head>
+
+<body>
+    <div class="header">
+            <!-- home button -->
+            <div id="home-button" onclick="location.href='/home'">
+                <div id="background-circle">
+                    <img src="{% static 'home_icon.svg' %}" width="58" height="58">
+                </div>
+            </div>
+            
+    <!-- top section with title and date -->
+     <div class="task-bar">
+        <input type="text" placeholder="Page Title" id="title-input"> <!-- input for page title -->
+        <!-- <input type="date" id="date-input" value="{{ date_value|date }}"> -->
+         <div id="date-input">{{date_value}}</div>
+    </div>
+    
+    <!-- canvas where notes will appear -->
+     <div class="canvas" id="canvas"></div>
+     <canvas id="drawCanvas"></canvas>
+     
+     <!-- bottom toolbar with button -->
+      <div class="toolbar">
+        <!-- save button -->
+            <button class="prev-next-buttons"><</button>
+            <button class="save-btn" onclick="onSubmit()">Save</button>
+            <button class="prev-next-buttons">></button>
+    </div>
+
+    <!-- LEFT TOOLBAR -->
+     <div class="sidebar">
+        <button onclick="addEntity()">🗒<span>Note</span></button>
+        <button onclick="addTodo()">☑<span>To-do</span></button>
+        <button onclick="toggleDraw()">✎𓂃<span>Draw</span></button>
+        <button onclick="toggleEraser()">🧽<span>Eraser</span></button>
+        <button onclick="addTable()">𝄜<span>Table</span></button>
+        <button onclick="addImage()">🖼️<span>Add Image</span></button>
+    </div>
+    
+</body>
+</html>

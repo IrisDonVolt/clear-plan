@@ -55,22 +55,25 @@
 
             <!-- information display -->
             <div class="information-display">
-                <div class="text" id="date-display">&ensp;</div>
-                <div class="text" id="pages-created">Pages created:</div>
-                <div class="text" id="entities-created">Entities created:</div>
+                <div class="text" id="date-display">Select a date.</div>
+                <div class="text" id="pages-created" style="display: none;">Pages created:</div>
+                <div class="text" id="entities-created" style="display: none;">Entities created:</div>
             </div>
         </div>
 
         <div class="complete-bottom-bar" id="complete-bottom-bar">
             <div class="taskbar" id="taskbar">
-                <button class="taskbar-button" onclick="location.href='canvas_board.html'">Today</button>
-                <button class="add-entity">+</button>
-                <button class="taskbar-button">Calendar</button>
+                <form action="/page" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="selected-date" id="selected-date" value="{{date}}">
+                    <label for="open-button" class="taskbar-button" onclick="location.href='page'">Open</label>
+                    <input class="input-button" type="submit" id="open-button">
+                </form>
             </div>
 
             <div class="dropdown">
                 <div class="position-toggle-button" id="position-toggle-button"  onclick="settingsDropdown()">
-                    <img src="{% static 'settings.svg' %}">
+                    <img src="{% static 'settings.png' %}">
                 </div>
                 <div class="dropdown-content" id="dropdown-content">
                     <div class="toggle-options" id="toggle-option-left" onclick="positionToggle('left')">Move taskbar to left</div>
