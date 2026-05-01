@@ -1,3 +1,8 @@
+var pgno_value = document.getElementById('page-number').textContent.toString(); 
+var pgno = pgno_value.substring(pgno_value.indexOf(' ')).trim(); 
+
+var date_value = document.getElementById('date-display').textContent.toString();
+
 // ================= NOTES =================
 function addEntity(){
 
@@ -12,6 +17,8 @@ function addEntity(){
     makeDraggable(note); // makes note movable
     addDeleteButton(note); // add delete icon
     note.focus(); 
+
+    location.href="/createNote/" + date_value + "/" + pgno;
 }
 
 // ================= DRAG =================

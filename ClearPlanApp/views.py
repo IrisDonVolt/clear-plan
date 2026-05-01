@@ -7,7 +7,7 @@ from datetime import datetime
 
    
 
-# Create your views here.
+# Rendering views
 def firstpage(request):
     return render(request, "firstpage.html")
 
@@ -118,7 +118,14 @@ def themes(request):
 def calendar(request): 
     return render(request, 'calendar.html')
 
-def redirectToPage(request): 
+    
+def page(request, date, pgno): 
+    context = {'date_value': date, 'pgno': pgno}
+    return render(request, 'page.html', context=context)
+
+
+# middleman views 
+def createOpenPage(request): 
     if request.method == "POST":
         date = request.POST['selected-date']
         
@@ -126,12 +133,15 @@ def redirectToPage(request):
         page = Page.objects.filter(date=date)
         if not page.exists(): 
             current_custom_user = Users.objects.get(username=request.user.username)
-            current_journal = Journal.objects.get(user_name=current_custom_user.username)
-            new_page = Page(journal=current_journal, date=date)
+            new_page = Page(user_name=current_custom_user.username, date=date, page_number=1)
             new_page.save()
         
         return redirect(f"page/{date}/1")
     
-def page(request, date, pgno): 
-    context = {'date_value': date, 'pgno': pgno}
-    return render(request, 'page.html', context=context)
+def createNote(request, date, pgno):
+    current_page = Page.objects.filter(date=date, page_number=pgno).values()
+    
+    new_note = Note(page=current_page.first()['pageid'])
+    new_note.save()
+    
+    return redirect(f"/page/{date}/{pgno}")

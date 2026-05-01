@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="{% static 'page.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'mainstyles.css' %}" type="text/css">
 
-    <script src="{% static 'page.js' %}" defer></script>
     <script src="{% static 'loadThemes.js' %}" defer></script>
+    <script src="{% static 'page.js' %}" defer></script>
 </head>
 
 <body>
@@ -23,8 +23,8 @@
     <!-- top section with title and date -->
      <div class="task-bar">
         <input type="text" placeholder="Page Title" id="title-input"> <!-- input for page title -->
-        <!-- <input type="date" id="date-input" value="{{ date_value|date }}"> -->
-         <div id="date-input">{{date_value}}</div>
+        <div id="page-number">Page {{pgno}}</div>
+         <div id="date-display">{{date_value}}</div>
     </div>
     
     <!-- canvas where notes will appear -->
@@ -46,6 +46,9 @@
         <button onclick="addEntity()">🗒<span>Note</span></button>
         <button onclick="addTodo()">☑<span>To-do</span></button>
     </div>
+
+    <!-- hidden values -->
+    <input type="hidden" id="hidden-page-date">
     
 </body>
 </html>

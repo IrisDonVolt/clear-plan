@@ -46,13 +46,23 @@ body {
     color: var(--accent-color);
 }
 
-#date-input {
+#date-display {
     background-color: #00000000;
     border: none; 
     font-family: var(--secondary-font);
     font-weight: bold; 
     font-size: 16px;
     color: var(--accent-color);
+}
+
+#page-number {
+    background-color: #00000000;
+    border: none; 
+    font-family: var(--secondary-font);
+    font-weight: bold; 
+    font-size: 16px;
+    color: var(--accent-color); 
+    margin-right: 150px; 
 }
 
 

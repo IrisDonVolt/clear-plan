@@ -13,18 +13,23 @@ class Journal(models.Model):
     created_at = models.DateTimeField(default=datetime.now, blank=True) 
     
 class Page(models.Model): 
-    journal = models.ForeignKey(Journal, on_delete=models.CASCADE, related_name="pages")
+    pageid = models.BigAutoField(primary_key=True)
+    user_name = models.CharField(max_length=None)
     date = models.CharField(max_length=None)
     title = models.CharField(max_length=None)
+    page_number = models.IntegerField(max_length=None, default=0)
     
 class Note(models.Model): 
-    page = models.ForeignKey(Page, on_delete=models.CASCADE, related_name="notes")
+    noteid = models.BigAutoField(primary_key=True)
+    page = models.CharField(max_length=None)
     content = models.CharField(max_length=None)
     
 class Taskbox(models.Model): 
-    page = models.ForeignKey(Page, on_delete=models.CASCADE, related_name="tasklists") 
+    taskboxid = models.BigAutoField(primary_key=True)
+    page = models.CharField(max_length=None) 
     
 class TaskItem(models.Model):
-    taskbox = models.ForeignKey(Taskbox, on_delete=models.CASCADE, related_name="taskitems")
+    taskitemid = models.BigAutoField(primary_key=True)
+    taskbox = models.CharField(max_length=None)
     content = models.CharField(max_length=None)
     checked = models.BooleanField(default=False)
