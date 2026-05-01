@@ -22,14 +22,27 @@
             
     <!-- top section with title and date -->
      <div class="task-bar">
-        <input type="text" placeholder="Page Title" id="title-input"> <!-- input for page title -->
+        <form name="page-title" method="POST" action="/updatePageTitle/{{date_value}}/{{pgno}}">
+            {% csrf_token %}
+            <input type="text" placeholder="Page Title" id="title-input" name="title-input"> <!-- input for page title -->
+        </form>
         <div id="page-number">Page {{pgno}}</div>
-         <div id="date-display">{{date_value}}</div>
+        <div id="date-display">{{date_value}}</div>
     </div>
     
     <!-- canvas where notes will appear -->
-     <div class="canvas" id="canvas"></div>
-     <canvas id="drawCanvas"></canvas>
+     <div class="canvas" id="canvas">
+        {% for note in notes %}
+            <div 
+                class="note"
+                contentEditable="true"
+                style="left: 100px; top:100px;"
+                onload="loadNote(this)"
+            >
+                {{note.content}}
+            </div>
+        {% endfor %}
+     </div>
      
      <!-- bottom toolbar with button -->
       <div class="toolbar">
@@ -43,12 +56,17 @@
 
     <!-- LEFT TOOLBAR -->
      <div class="sidebar">
-        <button onclick="addEntity()">🗒<span>Note</span></button>
+        <button onclick="addNote()">🗒<span>Note</span></button>
         <button onclick="addTodo()">☑<span>To-do</span></button>
     </div>
 
     <!-- hidden values -->
-    <input type="hidden" id="hidden-page-date">
+    <form name="hidden-form" method="POST" action="/createUpdateNote/{{date_value}}/{{pgno}}">
+        {% csrf_token %}
+        <input type="hidden" id="hidden-note-id" name="hidden-note-id">
+        <input type="hidden" id="hidden-note-content" name="hidden-note-content" value="">
+    </form>
+
     
 </body>
 </html>

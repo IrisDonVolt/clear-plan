@@ -119,29 +119,61 @@ def calendar(request):
     return render(request, 'calendar.html')
 
     
-def page(request, date, pgno): 
-    context = {'date_value': date, 'pgno': pgno}
+def page(request, date, pgno):
+    context = {
+        'date_value': date, 
+        'pgno': pgno
+    }
+    
+    current_page = Page.objects.get(date=date, page_number=pgno)
+    notes = Note.objects.filter(page=current_page.pageid).values()
+    
+    if notes.exists(): 
+        context['notes'] = notes
+        
     return render(request, 'page.html', context=context)
 
 
 # middleman views 
 def createOpenPage(request): 
+    current_custom_user = Users.objects.get(username=request.user.username)
+    
     if request.method == "POST":
         date = request.POST['selected-date']
         
         # check if page exists otherwise create new page 
-        page = Page.objects.filter(date=date)
+        page = Page.objects.filter(date=date, user_name=current_custom_user.username)
         if not page.exists(): 
-            current_custom_user = Users.objects.get(username=request.user.username)
             new_page = Page(user_name=current_custom_user.username, date=date, page_number=1)
             new_page.save()
         
         return redirect(f"page/{date}/1")
     
-def createNote(request, date, pgno):
-    current_page = Page.objects.filter(date=date, page_number=pgno).values()
+def createUpdateNote(request, date, pgno):
+    current_custom_user = Users.objects.get(username=request.user.username)
+    current_page = Page.objects.filter(date=date, page_number=pgno, user_name=current_custom_user.username).values()
     
-    new_note = Note(page=current_page.first()['pageid'])
-    new_note.save()
+    if request.method == "POST": 
+        noteid = request.POST['hidden-note-id']
+        notecontent = request.POST['hidden-note-content']
     
+        note = Note.objects.filter(page=current_page.first()['pageid'], noteid=noteid)
+        if not note.exists():
+            new_note = Note(page=current_page.first()['pageid'], content=notecontent)
+            new_note.save()
+        else: 
+            note = Note.objects.get(page=current_page.first()['pageid'], noteid=noteid)
+            note.update(content=notecontent)
+        
+    return redirect(f"/page/{date}/{pgno}")
+
+def updatePageTitle(request, date, pgno):
+    current_custom_user = Users.objects.get(username=request.user.username)
+    current_page = Page.objects.get(date=date, page_number=pgno, user_name=current_custom_user.username)
+    
+    if request.method == "POST": 
+        page_title = request.POST['title-input']
+        current_page.title = page_title 
+        current_page.save()
+        
     return redirect(f"/page/{date}/{pgno}")

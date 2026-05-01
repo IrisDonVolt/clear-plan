@@ -3,22 +3,46 @@ var pgno = pgno_value.substring(pgno_value.indexOf(' ')).trim();
 
 var date_value = document.getElementById('date-display').textContent.toString();
 
-// ================= NOTES =================
-function addEntity(){
+var canvas = document.getElementById('canvas'); 
 
+var page_title_input = document.getElementById('title-input'); 
+page_title_input.addEventListener('blur', (e) => {
+    document.forms['page-title'].submit(); 
+});
+
+// ================= WHEN NOTE IS LOADED IN HTML =================
+function loadNote(note) {
+    
+    canvas.appendChild(note); // adds notepad to the page
+    makeDraggable(note); // makes note movable
+    addDeleteButton(note); // add delete icon
+    note.focus(); 
+
+    // logic: when the note loses focus, update its value in db 
+    note.addEventListener('blur', (e) => {
+        let note_content_with_x= e.target.innerText; 
+        let note_content= note_content_with_x.slice(0, note_content_with_x.length-1); // get the value of note after it loses focus
+
+        let canvas_array = canvas.children; 
+        let index = Array.from(canvas_array).indexOf(e.target) + 1;
+        
+        document.getElementById('hidden-note-id').setAttribute('value', index); 
+        document.getElementById('hidden-note-content').setAttribute('value', note_content); 
+
+        document.forms['hidden-form'].submit();
+        
+    });
+}
+
+// ================= NOTES =================
+function addNote(){
     const note = document.createElement("div"); // creates a new div
     note.className = "note";
     note.contentEditable = true; // allows typing inside the notepad
     note.innerHTML = "<br>"; 
     note.style.left = "100px"; 
     note.style.top = "100px";
-    
-    document.getElementById("canvas").appendChild(note); // adds notepad to the page
-    makeDraggable(note); // makes note movable
-    addDeleteButton(note); // add delete icon
-    note.focus(); 
-
-    location.href="/createNote/" + date_value + "/" + pgno;
+    loadNote(note);    
 }
 
 // ================= DRAG =================

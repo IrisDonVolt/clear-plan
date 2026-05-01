@@ -11,5 +11,6 @@ urlpatterns = [
     path('calendar', views.calendar, name='calendar'), 
     path('createOpenPage', views.createOpenPage, name='createOpenPage'), 
     path('page/<str:date>/<int:pgno>', views.page, name='page'),
-    path('createNote/<str:date>/<int:pgno>', views.createNote, name='updateNote')
+    path('createUpdateNote/<str:date>/<int:pgno>', views.createUpdateNote, name='createUpdateNote'), 
+    path('updatePageTitle/<str:date>/<int:pgno>', views.updatePageTitle, name='updatePageTitle')
 ]
