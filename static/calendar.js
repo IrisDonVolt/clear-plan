@@ -158,19 +158,19 @@ nextButton.addEventListener('click', () => {
 }); 
 
 function selectedDate(date) {
-    display_pages_created.style.display = "inline"; 
-    display_entities_created.style.display = "inline"; 
+    var date_display = document.getElementById('date-display'); 
 
     var day = date.textContent; 
-    var monthYear = document.getElementById('monthYear').textContent; 
-    document.getElementById('date-display').textContent = day + " " + monthYear;
+    var monthYear = document.getElementById('monthYear').textContent;
+
+    date_display.textContent = day + " " + monthYear;
     var yearBuilder = monthYear.slice(-4).toString(); 
     var monthName = monthYear.substring(0, monthYear.indexOf(' ')); 
     var monthBuilder = monthArray[monthName] + 1
 
     var dateBuilderWithFormat = day + "-" + monthBuilder + "-" + yearBuilder; 
-    alert(dateBuilderWithFormat); 
     document.getElementById('selected-date').setAttribute('value', dateBuilderWithFormat); 
+
 }
     
 

@@ -55,9 +55,8 @@
 
             <!-- information display -->
             <div class="information-display">
-                <div class="text" id="date-display">Select a date.</div>
-                <div class="text" id="pages-created" style="display: none;">Pages created:</div>
-                <div class="text" id="entities-created" style="display: none;">Entities created:</div>
+                <div class="text" id="instruction-display">Select a date.</div>
+                <div class="text" id="date-display"></div>
             </div>
         </div>
 
@@ -65,7 +64,7 @@
             <div class="taskbar" id="taskbar">
                 <form action="/createOpenPage" method="POST">
                     {% csrf_token %}
-                    <input type="hidden" name="selected-date" id="selected-date" value="{{date}}">
+                    <input type="hidden" name="selected-date" id="selected-date" value="">
                     <label for="open-button" class="taskbar-button">Open</label>
                     <input class="input-button" type="submit" id="open-button">
                 </form>

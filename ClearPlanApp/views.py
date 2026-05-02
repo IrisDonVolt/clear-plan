@@ -5,8 +5,6 @@ from .models import Users, Journal, Page, Note, Taskbox, TaskItem
 from django.http import HttpResponse
 from datetime import datetime 
 
-   
-
 # Rendering views
 def firstpage(request):
     return render(request, "firstpage.html")
@@ -137,20 +135,24 @@ def page(request, date, pgno):
     return render(request, 'page.html', context=context)
 
 
-# middleman views 
+# middleman views
 def createOpenPage(request): 
     current_custom_user = Users.objects.get(username=request.user.username)
     
     if request.method == "POST":
         date = request.POST['selected-date']
         
-        # check if page exists otherwise create new page 
-        page = Page.objects.filter(date=date, user_name=current_custom_user.username)
-        if not page.exists(): 
-            new_page = Page(user_name=current_custom_user.username, date=date, page_number=1)
-            new_page.save()
+        if (date):
+            # check if page exists otherwise create new page 
+            page = Page.objects.filter(date=date, user_name=current_custom_user.username)
+            if not page.exists(): 
+                new_page = Page(user_name=current_custom_user.username, date=date, page_number=1)
+                new_page.save()
+            
+            return redirect(f"page/{date}/1")
         
-        return redirect(f"page/{date}/1")
+        else: 
+            return redirect('calendar')
     
 def turnPage(request, date, pgno): 
     current_custom_user = Users.objects.get(username=request.user.username)

@@ -189,3 +189,6 @@ body {
     padding: 0px; 
 }
 
+#instruction-display {
+    color: var(--primary-color);
+}
