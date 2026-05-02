@@ -10,65 +10,35 @@ page_title_input.addEventListener('blur', (e) => {
     document.forms['page-title'].submit(); 
 });
 
+var prev_button = document.getElementById('prev-button'); 
+var next_button = document.getElementById('next-button'); 
+
+prev_button.addEventListener('click', (e) => {
+    if (pgno != "1") {
+        location.href = "/turnPage/" + date_value + "/" + (parseInt(pgno)-1); 
+    }
+}); 
+
+next_button.addEventListener('click', (e) => {
+    location.href = "/turnPage/" + date_value + "/" + (parseInt(pgno)+1);
+}); 
 // ================= WHEN NOTE IS LOADED IN HTML =================
 
 function addListener(note) {
-    
+
     // blur listener 
     note.addEventListener('blur', (e) => {
+        e.target.style.resize = "none"; 
         let note_content_with_x= e.target.innerText; 
         let note_content= note_content_with_x.slice(0, note_content_with_x.length-1).trim(); // get the value of note after it loses focus
 
         document.getElementById('hidden-note-id').setAttribute('value', e.target.id); 
         document.getElementById('hidden-note-content').setAttribute('value', note_content); 
         document.getElementById('hidden-note-position-top').setAttribute('value', e.target.style.top);
-        document.getElementById('hidden-note-position-left').setAttribute('value', e.target.style.left); 
-        document.getElementById('hidden-note-width').setAttribute('value', e.target.style.width); 
-        document.getElementById('hidden-note-height').setAttribute('value', e.target.style.height); 
+        document.getElementById('hidden-note-position-left').setAttribute('value', e.target.style.left);  
         
         document.forms['hidden-form'].submit();  
     });
-}
-
-function addResizeListener(note, resizer_r, resizer_b) {
-    // current position of the mouse 
-    let x = 0; 
-    let y = 0; 
-
-    // dimensions of the element 
-    let w = 0; 
-    let h = 0; 
-
-    const mouseDownHandler = function(e) {
-        // get the current mouse position 
-        x = e.clientX; 
-        y = e.clientY; 
-
-        // calculate the dimension of the element 
-        const styles = window.getComputedStyle(note);
-        w = parseInt(styles.width, 10); 
-        h = parseInt(styles.height, 10); 
-
-        document.addEventListener('mousemove', mouseMoveHandler); 
-        document.addEventListener('mouseup', mouseUpHandler); 
-    }; 
-
-    const mouseMoveHandler = function(e) {
-        // how far the mouse has been moved 
-        const dx = e.clientX - x; 
-        const dy = e.clientY - y; 
-
-        note.style.width = `${w + dx}px`; 
-        note.style.height = `${h + dy}px`; 
-    }; 
-
-    const mouseUpHandler = function(e) {
-        document.removeEventListener('mousemove', mouseMoveHandler); 
-        document.removeEventListener('mouseup', mouseUpHandler); 
-    };
-
-    resizer_b.addEventListener('mousedown', mouseDownHandler); 
-    resizer_r.addEventListener('mousedown', mouseDownHandler); 
 }
 
 // ================= NOTES =================

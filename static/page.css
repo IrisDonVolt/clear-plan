@@ -219,19 +219,18 @@ body {
 /* ================= STICKY NOTE ================= */
 .note {
     width: 200px;
+    max-width: 400px; 
     min-height: 100px;
     background: var(--secondary-color);
     border: 2px solid var(--primary-color);
     border-radius: 10px;
-    padding: 10px 35px 10px 10px;
+    padding: 10px;
     position: absolute;
     cursor: move;
     font-family: var(--primary-font);
     font-weight: bold; 
     box-sizing: border-box;
     z-index: 10;
-    resize: both;
-    overflow: auto; 
 }  
 
 /* ================= TODO ================= */

@@ -24,7 +24,7 @@
      <div class="task-bar">
         <form name="page-title" method="POST" action="/updatePageTitle/{{date_value}}/{{pgno}}">
             {% csrf_token %}
-            <input type="text" placeholder="Page Title" id="title-input" name="title-input" value={{page_title}}> <!-- input for page title -->
+            <input type="text" placeholder="Page Title" id="title-input" name="title-input" value="{{page_title}}"> <!-- input for page title -->
         </form>
         <div id="page-number">Page {{pgno}}</div>
         <div id="date-display">{{date_value}}</div>
@@ -36,10 +36,9 @@
             <div 
                 id="{{note.noteid}}" class="note"
                 contentEditable="true"
-                style="left: {{note.position_left}}; top: {{note.position_top}}; 
-                       width: {{note.width}}; height: {{note.height}};"
+                style="left: {{note.position_left}}; top: {{note.position_top}};"
                 onfocus="makeDraggable(this); addDeleteButton(this); addListener(this); "
-            >{{note.content}}&nbsp;
+            >{{note.content|linebreaksbr}}&nbsp;
             </div>
         {% endfor %}
      </div>
@@ -47,11 +46,9 @@
      <!-- bottom toolbar with button -->
       <div class="toolbar">
         <!-- save button -->
-            <button class="prev-next-buttons"><</button>
-            <button class="btn" onclick="onSubmit()">Save</button>
-            <button class="btn">+</button>
+            <button class="prev-next-buttons" id="prev-button"><</button>
             <button class="btn" onclick="location.href='/calendar'">Calendar</button>
-            <button class="prev-next-buttons">></button>
+            <button class="prev-next-buttons" id="next-button">></button>
     </div>
 
     <!-- LEFT TOOLBAR -->
@@ -67,8 +64,6 @@
         <input type="hidden" id="hidden-note-content" name="hidden-note-content" value="">
         <input type="hidden" id="hidden-note-position-top" name="hidden-note-position-top">
         <input type="hidden" id="hidden-note-position-left" name="hidden-note-position-left">
-        <input type="hidden" id="hidden-note-width" name="hidden-note-width">
-        <input type="hidden" id="hidden-note-height" name="hidden-note-height">
     </form>
 
     

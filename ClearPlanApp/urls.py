@@ -11,6 +11,7 @@ urlpatterns = [
     path('calendar', views.calendar, name='calendar'), 
     path('createOpenPage', views.createOpenPage, name='createOpenPage'), 
     path('page/<str:date>/<int:pgno>', views.page, name='page'),
+    path('turnPage/<str:date>/<int:pgno>', views.turnPage, name='turnPage'),
     path('updatePageTitle/<str:date>/<int:pgno>', views.updatePageTitle, name='updatePageTitle'),
     path('createUpdateNote/<str:date>/<int:pgno>', views.createUpdateNote, name='createUpdateNote'), 
     path('deleteNote/<str:date>/<int:pgno>/<str:uuid>', views.deleteNote, name='deleteNote')

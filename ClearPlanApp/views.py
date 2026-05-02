@@ -152,6 +152,16 @@ def createOpenPage(request):
         
         return redirect(f"page/{date}/1")
     
+def turnPage(request, date, pgno): 
+    current_custom_user = Users.objects.get(username=request.user.username)
+    
+    page = Page.objects.filter(date=date, user_name=current_custom_user.username, page_number=pgno)
+    if not page.exists(): 
+        new_page = Page(user_name=current_custom_user.username, date=date, page_number=pgno)
+        new_page.save()
+        
+    return redirect(f"/page/{date}/{pgno}")
+    
 def updatePageTitle(request, date, pgno):
     current_custom_user = Users.objects.get(username=request.user.username)
     current_page = Page.objects.get(date=date, page_number=pgno, user_name=current_custom_user.username)
@@ -172,22 +182,17 @@ def createUpdateNote(request, date, pgno):
         notecontent = request.POST['hidden-note-content'].strip()
         notetop = request.POST['hidden-note-position-top']
         noteleft = request.POST['hidden-note-position-left'] 
-        notewidth = request.POST['hidden-note-width']
-        noteheight = request.POST['hidden-note-height']
     
         note = Note.objects.filter(noteid=noteid)
         if not note.exists():
             new_note = Note(noteid=noteid, page=current_page.pageid, content=notecontent, 
-                            position_top=notetop, position_left=noteleft, 
-                            width=notewidth, height=noteheight)
+                            position_top=notetop, position_left=noteleft)
             new_note.save()
         else: 
             note = Note.objects.get(noteid=noteid)
             note.content = notecontent 
             note.position_top = notetop 
             note.position_left = noteleft 
-            note.width = notewidth
-            note.height = noteheight 
             note.save()
         
     return redirect(f"/page/{date}/{pgno}")
