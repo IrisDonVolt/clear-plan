@@ -125,7 +125,10 @@ def page(request, date, pgno):
         'pgno': pgno
     }
     
-    current_page = Page.objects.get(date=date, page_number=pgno)
+    current_custom_user = Users.objects.get(username=request.user.username)
+    
+    current_page = Page.objects.get(user_name=current_custom_user.username, date=date, page_number=pgno)
+    context['page_title'] = current_page.title
     notes = Note.objects.filter(page=current_page.pageid).values()
     
     if notes.exists(): 
@@ -149,24 +152,6 @@ def createOpenPage(request):
         
         return redirect(f"page/{date}/1")
     
-def createUpdateNote(request, date, pgno):
-    current_custom_user = Users.objects.get(username=request.user.username)
-    current_page = Page.objects.filter(date=date, page_number=pgno, user_name=current_custom_user.username).values()
-    
-    if request.method == "POST": 
-        noteid = request.POST['hidden-note-id']
-        notecontent = request.POST['hidden-note-content']
-    
-        note = Note.objects.filter(page=current_page.first()['pageid'], noteid=noteid)
-        if not note.exists():
-            new_note = Note(page=current_page.first()['pageid'], content=notecontent)
-            new_note.save()
-        else: 
-            note = Note.objects.get(page=current_page.first()['pageid'], noteid=noteid)
-            note.update(content=notecontent)
-        
-    return redirect(f"/page/{date}/{pgno}")
-
 def updatePageTitle(request, date, pgno):
     current_custom_user = Users.objects.get(username=request.user.username)
     current_page = Page.objects.get(date=date, page_number=pgno, user_name=current_custom_user.username)
@@ -177,3 +162,38 @@ def updatePageTitle(request, date, pgno):
         current_page.save()
         
     return redirect(f"/page/{date}/{pgno}")
+    
+def createUpdateNote(request, date, pgno):
+    current_custom_user = Users.objects.get(username=request.user.username)
+    current_page = Page.objects.get(date=date, page_number=pgno, user_name=current_custom_user.username)
+    
+    if request.method == "POST": 
+        noteid = request.POST['hidden-note-id']
+        notecontent = request.POST['hidden-note-content'].strip()
+        notetop = request.POST['hidden-note-position-top']
+        noteleft = request.POST['hidden-note-position-left'] 
+        notewidth = request.POST['hidden-note-width']
+        noteheight = request.POST['hidden-note-height']
+    
+        note = Note.objects.filter(noteid=noteid)
+        if not note.exists():
+            new_note = Note(noteid=noteid, page=current_page.pageid, content=notecontent, 
+                            position_top=notetop, position_left=noteleft, 
+                            width=notewidth, height=noteheight)
+            new_note.save()
+        else: 
+            note = Note.objects.get(noteid=noteid)
+            note.content = notecontent 
+            note.position_top = notetop 
+            note.position_left = noteleft 
+            note.width = notewidth
+            note.height = noteheight 
+            note.save()
+        
+    return redirect(f"/page/{date}/{pgno}")
+
+def deleteNote(request, date, pgno, uuid): 
+    note = Note.objects.get(noteid=uuid)
+    note.delete()
+    
+    return redirect(f"/page/{date}/{pgno}") 

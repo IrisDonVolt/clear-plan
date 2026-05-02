@@ -11,38 +11,83 @@ page_title_input.addEventListener('blur', (e) => {
 });
 
 // ================= WHEN NOTE IS LOADED IN HTML =================
-function loadNote(note) {
-    
-    canvas.appendChild(note); // adds notepad to the page
-    makeDraggable(note); // makes note movable
-    addDeleteButton(note); // add delete icon
-    note.focus(); 
 
-    // logic: when the note loses focus, update its value in db 
+function addListener(note) {
+    
+    // blur listener 
     note.addEventListener('blur', (e) => {
         let note_content_with_x= e.target.innerText; 
-        let note_content= note_content_with_x.slice(0, note_content_with_x.length-1); // get the value of note after it loses focus
+        let note_content= note_content_with_x.slice(0, note_content_with_x.length-1).trim(); // get the value of note after it loses focus
 
-        let canvas_array = canvas.children; 
-        let index = Array.from(canvas_array).indexOf(e.target) + 1;
-        
-        document.getElementById('hidden-note-id').setAttribute('value', index); 
+        document.getElementById('hidden-note-id').setAttribute('value', e.target.id); 
         document.getElementById('hidden-note-content').setAttribute('value', note_content); 
-
-        document.forms['hidden-form'].submit();
+        document.getElementById('hidden-note-position-top').setAttribute('value', e.target.style.top);
+        document.getElementById('hidden-note-position-left').setAttribute('value', e.target.style.left); 
+        document.getElementById('hidden-note-width').setAttribute('value', e.target.style.width); 
+        document.getElementById('hidden-note-height').setAttribute('value', e.target.style.height); 
         
+        document.forms['hidden-form'].submit();  
     });
+}
+
+function addResizeListener(note, resizer_r, resizer_b) {
+    // current position of the mouse 
+    let x = 0; 
+    let y = 0; 
+
+    // dimensions of the element 
+    let w = 0; 
+    let h = 0; 
+
+    const mouseDownHandler = function(e) {
+        // get the current mouse position 
+        x = e.clientX; 
+        y = e.clientY; 
+
+        // calculate the dimension of the element 
+        const styles = window.getComputedStyle(note);
+        w = parseInt(styles.width, 10); 
+        h = parseInt(styles.height, 10); 
+
+        document.addEventListener('mousemove', mouseMoveHandler); 
+        document.addEventListener('mouseup', mouseUpHandler); 
+    }; 
+
+    const mouseMoveHandler = function(e) {
+        // how far the mouse has been moved 
+        const dx = e.clientX - x; 
+        const dy = e.clientY - y; 
+
+        note.style.width = `${w + dx}px`; 
+        note.style.height = `${h + dy}px`; 
+    }; 
+
+    const mouseUpHandler = function(e) {
+        document.removeEventListener('mousemove', mouseMoveHandler); 
+        document.removeEventListener('mouseup', mouseUpHandler); 
+    };
+
+    resizer_b.addEventListener('mousedown', mouseDownHandler); 
+    resizer_r.addEventListener('mousedown', mouseDownHandler); 
 }
 
 // ================= NOTES =================
 function addNote(){
     const note = document.createElement("div"); // creates a new div
+    note.id = crypto.randomUUID();  
     note.className = "note";
     note.contentEditable = true; // allows typing inside the notepad
     note.innerHTML = "<br>"; 
     note.style.left = "100px"; 
     note.style.top = "100px";
-    loadNote(note);    
+
+    canvas.appendChild(note); // adds notepad to the page
+    makeDraggable(note); // makes note movable
+    addDeleteButton(note); // add delete icon
+    note.focus();  
+
+    // add listeners to note 
+    addListener(note);   
 }
 
 // ================= DRAG =================
@@ -60,6 +105,7 @@ function makeDraggable(element){
 
         document.onmouseup = function(){ // when mouse is released
             document.onmousemove = null; // stops moving
+            
         }
     }
 }
@@ -75,9 +121,13 @@ function addDeleteButton(container) {
     del.onclick = function(e) {
         e.stopPropagation(); // prevents drag
         container.remove(); // delete that element
+
+        location.href="/deleteNote/" + date_value + "/" + pgno + "/" + container.id; 
     };
 
     container.appendChild(del);
+
+    
 }
 
 // ================= TODO =================

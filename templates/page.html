@@ -24,7 +24,7 @@
      <div class="task-bar">
         <form name="page-title" method="POST" action="/updatePageTitle/{{date_value}}/{{pgno}}">
             {% csrf_token %}
-            <input type="text" placeholder="Page Title" id="title-input" name="title-input"> <!-- input for page title -->
+            <input type="text" placeholder="Page Title" id="title-input" name="title-input" value={{page_title}}> <!-- input for page title -->
         </form>
         <div id="page-number">Page {{pgno}}</div>
         <div id="date-display">{{date_value}}</div>
@@ -34,12 +34,12 @@
      <div class="canvas" id="canvas">
         {% for note in notes %}
             <div 
-                class="note"
+                id="{{note.noteid}}" class="note"
                 contentEditable="true"
-                style="left: 100px; top:100px;"
-                onload="loadNote(this)"
-            >
-                {{note.content}}
+                style="left: {{note.position_left}}; top: {{note.position_top}}; 
+                       width: {{note.width}}; height: {{note.height}};"
+                onfocus="makeDraggable(this); addDeleteButton(this); addListener(this); "
+            >{{note.content}}&nbsp;
             </div>
         {% endfor %}
      </div>
@@ -65,6 +65,10 @@
         {% csrf_token %}
         <input type="hidden" id="hidden-note-id" name="hidden-note-id">
         <input type="hidden" id="hidden-note-content" name="hidden-note-content" value="">
+        <input type="hidden" id="hidden-note-position-top" name="hidden-note-position-top">
+        <input type="hidden" id="hidden-note-position-left" name="hidden-note-position-left">
+        <input type="hidden" id="hidden-note-width" name="hidden-note-width">
+        <input type="hidden" id="hidden-note-height" name="hidden-note-height">
     </form>
 
     

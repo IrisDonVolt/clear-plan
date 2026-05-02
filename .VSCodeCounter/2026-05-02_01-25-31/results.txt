@@ -1,0 +1,42 @@
+Date : 2026-05-02 01:25:31
+Directory : c:\Users\IrisDonVolt\MyProjects\ClearPlan\static
+Total : 16 files,  1717 codes, 38 comments, 312 blanks, all 2067 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| PostCSS    |          9 |      1,365 |         24 |        217 |      1,606 |
+| JavaScript |          5 |        348 |         14 |         94 |        456 |
+| XML        |          2 |          4 |          0 |          1 |          5 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                 | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                    |         16 |      1,717 |         38 |        312 |      2,067 |
++----------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                             | language   | code       | comment    | blank      | total      |
++----------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\static\calendar.css        | PostCSS    |        164 |          3 |         25 |        192 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\static\calendar.js         | JavaScript |        138 |          7 |         35 |        180 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\static\editjournal.css     | PostCSS    |        175 |          0 |         26 |        201 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\static\editjournal.js      | JavaScript |         14 |          0 |          1 |         15 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\static\firstpagestyles.css | PostCSS    |         44 |          1 |          6 |         51 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\static\home.css            | PostCSS    |        116 |          1 |         13 |        130 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\static\home_icon.svg       | XML        |          3 |          0 |          1 |          4 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\static\loadThemes.js       | JavaScript |         11 |          0 |          2 |         13 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\static\loginpagestyles.css | PostCSS    |        176 |          4 |         31 |        211 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\static\logo.svg            | XML        |          1 |          0 |          0 |          1 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\static\mainstyles.css      | PostCSS    |        197 |          2 |         33 |        232 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\static\page.css            | PostCSS    |        217 |         11 |         48 |        276 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\static\page.js             | JavaScript |         99 |          7 |         34 |        140 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\static\themes.css          | PostCSS    |        152 |          2 |         20 |        174 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\static\themes.js           | JavaScript |         86 |          0 |         22 |        108 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\static\userhome.css        | PostCSS    |        124 |          0 |         15 |        139 |
+| Total                                                                |            |      1,717 |         38 |        312 |      2,067 |
++----------------------------------------------------------------------+------------+------------+------------+------------+------------+

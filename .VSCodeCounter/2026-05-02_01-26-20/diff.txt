@@ -1,0 +1,56 @@
+Date : 2026-05-02 01:26:20
+Directory : c:\Users\IrisDonVolt\MyProjects\ClearPlan\templates
+Total : 25 files,  -1227 codes, 0 comments, -222 blanks, all -1449 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| HTML       |          9 |        490 |         38 |         90 |        618 |
+| XML        |          2 |         -4 |          0 |         -1 |         -5 |
+| JavaScript |          5 |       -348 |        -14 |        -94 |       -456 |
+| PostCSS    |          9 |     -1,365 |        -24 |       -217 |     -1,606 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                        | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                           |         25 |     -1,227 |          0 |       -222 |     -1,449 |
+| . (Files)                                                                   |          8 |        457 |         35 |         80 |        572 |
+| ..                                                                          |         16 |     -1,717 |        -38 |       -312 |     -2,067 |
+| ..\static                                                                   |         16 |     -1,717 |        -38 |       -312 |     -2,067 |
+| registration                                                                |          1 |         33 |          3 |         10 |         46 |
++-----------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                    | language   | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\static\calendar.css               | PostCSS    |       -164 |         -3 |        -25 |       -192 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\static\calendar.js                | JavaScript |       -138 |         -7 |        -35 |       -180 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\static\editjournal.css            | PostCSS    |       -175 |          0 |        -26 |       -201 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\static\editjournal.js             | JavaScript |        -14 |          0 |         -1 |        -15 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\static\firstpagestyles.css        | PostCSS    |        -44 |         -1 |         -6 |        -51 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\static\home.css                   | PostCSS    |       -116 |         -1 |        -13 |       -130 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\static\home_icon.svg              | XML        |         -3 |          0 |         -1 |         -4 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\static\loadThemes.js              | JavaScript |        -11 |          0 |         -2 |        -13 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\static\loginpagestyles.css        | PostCSS    |       -176 |         -4 |        -31 |       -211 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\static\logo.svg                   | XML        |         -1 |          0 |          0 |         -1 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\static\mainstyles.css             | PostCSS    |       -197 |         -2 |        -33 |       -232 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\static\page.css                   | PostCSS    |       -217 |        -11 |        -48 |       -276 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\static\page.js                    | JavaScript |        -99 |         -7 |        -34 |       -140 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\static\themes.css                 | PostCSS    |       -152 |         -2 |        -20 |       -174 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\static\themes.js                  | JavaScript |        -86 |          0 |        -22 |       -108 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\static\userhome.css               | PostCSS    |       -124 |          0 |        -15 |       -139 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\templates\calendar.html           | HTML       |         70 |          5 |         11 |         86 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\templates\editjournal.html        | HTML       |         70 |          7 |         10 |         87 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\templates\firstpage.html          | HTML       |         18 |          2 |          6 |         26 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\templates\home.html               | HTML       |         48 |          0 |          7 |         55 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\templates\page.html               | HTML       |         55 |          7 |         11 |         73 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\templates\register.html           | HTML       |         39 |          2 |         10 |         51 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\templates\registration\login.html | HTML       |         33 |          3 |         10 |         46 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\templates\themes.html             | HTML       |        112 |          9 |         15 |        136 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\templates\userhome.html           | HTML       |         45 |          3 |         10 |         58 |
+| Total                                                                       |            |     -1,227 |          0 |       -222 |     -1,449 |
++-----------------------------------------------------------------------------+------------+------------+------------+------------+------------+
