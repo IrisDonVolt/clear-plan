@@ -28,11 +28,13 @@ class Note(models.Model):
     position_left = models.CharField(max_length=None, default="100px")
     
 class Taskbox(models.Model): 
-    taskboxid = models.BigAutoField(primary_key=True)
+    taskboxid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     page = models.CharField(max_length=None) 
+    position_top = models.CharField(max_length=None, default="100px")
+    position_left = models.CharField(max_length=None, default="100px")
     
 class TaskItem(models.Model):
-    taskitemid = models.BigAutoField(primary_key=True)
-    taskbox = models.CharField(max_length=None)
+    taskitemid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    taskbox = models.UUIDField(max_length=None, default='')
     content = models.TextField(max_length=None)
-    checked = models.BooleanField(default=False)
+    checked = models.BooleanField(max_length=None, default=False)

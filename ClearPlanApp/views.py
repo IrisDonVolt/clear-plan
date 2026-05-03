@@ -128,10 +128,15 @@ def page(request, date, pgno):
     current_page = Page.objects.get(user_name=current_custom_user.username, date=date, page_number=pgno)
     context['page_title'] = current_page.title
     notes = Note.objects.filter(page=current_page.pageid).values()
+    taskboxes = Taskbox.objects.filter(page=current_page.pageid).values()
     
     if notes.exists(): 
         context['notes'] = notes
-        
+    
+    if taskboxes.exists(): 
+        context['taskboxes'] = taskboxes
+        context['taskitems'] = TaskItem.objects.all()
+
     return render(request, 'page.html', context=context)
 
 
@@ -199,8 +204,77 @@ def createUpdateNote(request, date, pgno):
         
     return redirect(f"/page/{date}/{pgno}")
 
-def deleteNote(request, date, pgno, uuid): 
-    note = Note.objects.get(noteid=uuid)
-    note.delete()
+def createUpdateTaskBox(request, date, pgno):
+    current_custom_user = Users.objects.get(username=request.user.username)
+    current_page = Page.objects.get(date=date, page_number=pgno, user_name=current_custom_user.username)
+    
+    if request.method == "POST": 
+        
+        # task item details 
+        taskitemid = request.POST['hidden-taskitem-id']
+        taskbox = request.POST['hidden-container-id']
+        content = request.POST['hidden-taskitem-content']
+            
+        taskbox_object = Taskbox.objects.filter(taskboxid=taskbox)
+        if not taskbox_object.exists(): 
+            new_taskbox = Taskbox(taskboxid=taskbox, page=current_page.pageid)                                  
+            new_taskbox.save() 
+            
+    return redirect(f"/createUpdateTaskItem/{date}/{pgno}/{taskitemid}/{taskbox}/{content}")
+
+def createUpdateTaskItem(request, date, pgno, taskitemid, taskbox, content): 
+    current_custom_user = Users.objects.get(username=request.user.username) 
+    current_page = Page.objects.get(date=date, page_number=pgno, user_name=current_custom_user.username)
+    
+    content = content.replace("-", " ")
+    taskitem = TaskItem.objects.filter(taskitemid=taskitemid)
+    if not taskitem.exists():
+        new_taskitem = TaskItem(taskitemid=taskitemid, taskbox=taskbox, 
+                                content=content)
+        new_taskitem.save() 
+        
+    else: 
+        taskitem = TaskItem.objects.get(taskitemid=taskitemid)
+        taskitem.content = content 
+        taskitem.save()
+            
+    return redirect(f"/page/{date}/{pgno}")
+
+def updateTaskPosition(request, date, pgno): 
+    if request.method == "POST": 
+        taskid = request.POST['task-id']
+        top = request.POST['taskposition-top']
+        left = request.POST['taskposition-left']
+        
+        taskbox = Taskbox.objects.get(taskboxid=taskid)
+        taskbox.position_top = top 
+        taskbox.position_left = left 
+        taskbox.save()
+        
+    return redirect(f"/page/{date}/{pgno}")
+            
+def updateTaskCheck(request, date, pgno, uuid, check):
+    taskitem = TaskItem.objects.get(taskitemid=uuid)
+    taskitem.update(checked=check)
+    
+    return redirect(f"/page/{date}/{pgno}")
+
+def deleteEntity(request, date, pgno, uuid): 
+    note = Note.objects.filter(noteid=uuid)
+    
+    if note.exists():
+        note.delete()
+        
+    else:
+        taskbox = Taskbox.objects.filter(taskboxid=uuid)
+        
+        if taskbox.exists():
+            TaskItem.objects.filter(taskbox=uuid).delete()
+            taskbox.delete()
+                
+        else: 
+            TaskItem.objects.filter(taskitemid=uuid).delete()
+        
+    
     
     return redirect(f"/page/{date}/{pgno}") 

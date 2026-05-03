@@ -22,13 +22,11 @@ prev_button.addEventListener('click', (e) => {
 next_button.addEventListener('click', (e) => {
     location.href = "/turnPage/" + date_value + "/" + (parseInt(pgno)+1);
 }); 
-// ================= WHEN NOTE IS LOADED IN HTML =================
+// ================= BLUR LISTENER FOR NOTE =================
 
-function addListener(note) {
+function addNoteListener(note) {
 
-    // blur listener 
     note.addEventListener('blur', (e) => {
-        e.target.style.resize = "none"; 
         let note_content_with_x= e.target.innerText; 
         let note_content= note_content_with_x.slice(0, note_content_with_x.length-1).trim(); // get the value of note after it loses focus
 
@@ -37,8 +35,65 @@ function addListener(note) {
         document.getElementById('hidden-note-position-top').setAttribute('value', e.target.style.top);
         document.getElementById('hidden-note-position-left').setAttribute('value', e.target.style.left);  
         
-        document.forms['hidden-form'].submit();  
+        document.forms['hidden-note-form'].submit();  
     });
+}
+
+// ================= BLUR LISTENER FOR TODO =================
+
+function addTaskBoxListener(taskitem) {
+
+    taskitem.addEventListener('blur', (e) => {
+        alert("this"); 
+        // document.getElementById('hidden-taskbox-id').setAttribute('value', taskbox.id); 
+        // document.getElementById('hidden-taskbox-position-top').setAttribute('value', taskbox.style.top); 
+        // document.getElementById('hidden-taskbox-position-left').setAttribute('value', taskbox.style.left); 
+
+        // document.forms['hidden-taskbox-form'].submit(); 
+    });
+}
+
+// ================ TYPING LISTENERS FOR TASK ITEMS =================================
+function addTypingListeners(text) {
+    // press enter to create new task
+    item = text.parentNode; 
+    container = item.parentNode;
+    text.addEventListener("keydown", function(e) {
+
+        if (e.key === "Enter") {
+            addTodoItem(container);
+
+            setTimeout(() => {
+                container.lastChild.querySelector(".todo-text").focus();
+            }, 0);
+
+            let parentID = e.target.parentNode.id; 
+            let content = e.target.textContent;
+            content = content.replace(/ /g, '-');  
+            location.href=`/createUpdateTaskItem/${date_value}/${pgno}/${parentID}/${container.id}/${content}`;
+            e.preventDefault();
+        }
+
+        if (e.key === "Backspace" && text.innerText.trim() === "") {
+            e.preventDefault();
+
+            if (container.children.length > 1) {
+                item.remove();
+
+                setTimeout(() => {
+                    const last = container.lastChild.querySelector(".todo-text");
+                    if (last) last.focus();
+                }, 0);
+            }
+        }
+    });
+}
+
+// ================= LISTENER FOR CHECKBOX =================
+function checkListener(checkbox) {
+    checkbox.onchange = function(e) {
+        alert(checkbox.checked);
+    }
 }
 
 // ================= NOTES =================
@@ -52,16 +107,16 @@ function addNote(){
     note.style.top = "100px";
 
     canvas.appendChild(note); // adds notepad to the page
-    makeDraggable(note); // makes note movable
+    makeNoteDraggable(note); // makes note movable
     addDeleteButton(note); // add delete icon
     note.focus();  
 
     // add listeners to note 
-    addListener(note);   
+    addNoteListener(note);   
 }
 
 // ================= DRAG =================
-function makeDraggable(element){
+function makeNoteDraggable(element){
     let offsetX = 0, offsetY = 0; // stores mouse offset 
 
     element.onmousedown = function(e){ // when mouse is pressed
@@ -73,8 +128,31 @@ function makeDraggable(element){
             element.style.top = (e.clientY - offsetY) + "px"; // move vertically
         }
 
-        document.onmouseup = function(){ // when mouse is released
+        document.onmouseup = function(e){ // when mouse is released
             document.onmousemove = null; // stops moving
+        }
+    }
+}
+
+function makeTaskDraggable(element){
+    let offsetX = 0, offsetY = 0; // stores mouse offset 
+
+    element.onmousedown = function(e){ // when mouse is pressed
+        offsetX = e.clientX - element.offsetLeft; // calculate x offset
+        offsetY = e.clientY - element.offsetTop; // calculate y offset
+        
+        document.onmousemove = function(e){ // when mouse moves
+            element.style.left = (e.clientX - offsetX) + "px"; // move horizontally
+            element.style.top = (e.clientY - offsetY) + "px"; // move vertically
+        }
+
+        element.onmouseup = function(e){ // when mouse is released
+            document.onmousemove = null; // stops moving
+                document.getElementById('task-id').setAttribute('value', element.id)
+                document.getElementById('taskposition-top').setAttribute('value', element.style.top); 
+                document.getElementById('taskposition-left').setAttribute('value', element.style.left); 
+
+                document.forms['hidden-taskposition-form'].submit();
             
         }
     }
@@ -92,7 +170,7 @@ function addDeleteButton(container) {
         e.stopPropagation(); // prevents drag
         container.remove(); // delete that element
 
-        location.href="/deleteNote/" + date_value + "/" + pgno + "/" + container.id; 
+        location.href="/deleteEntity/" + date_value + "/" + pgno + "/" + container.id; 
     };
 
     container.appendChild(del);
@@ -103,58 +181,47 @@ function addDeleteButton(container) {
 // ================= TODO =================
 function addTodo() {
 
-    const todo = document.createElement("div"); // creates todo container
+    const todo = document.createElement("div");
+    todo.id = crypto.randomUUID();  // creates todo container
     todo.className = "todo";
-    todo.style.left = "150px";
-    todo.style.top = "150px";
+    todo.style.left = "100px";
+    todo.style.top = "100px";
 
+    canvas.appendChild(todo); // adds todo to page
+    makeTaskDraggable(todo); // makes todo movable
+    addDeleteButton(todo); // add delete icon // add onblur listener for the taskbox 
+
+    // addMouseUpListener(todo);
+    
     addTodoItem(todo); // adds first task
-
-    document.getElementById("canvas").appendChild(todo); // adds todo to page
-    makeDraggable(todo); // makes todo movable
-    addDeleteButton(todo); // add delete icon
 }
 
 function addTodoItem(container) {
-    const item = document.createElement("div"); // creates one task row
+    const item = document.createElement("div");
+    item.id = crypto.randomUUID();  // creates one task row
     item.className = "todo-item";
 
     const checkbox = document.createElement("input"); // creates checkbox
     checkbox.type = "checkbox";
+    checkbox.checked = false; 
 
     const text = document.createElement("div"); // creates text area
     text.className = "todo-text";
     text.contentEditable = true; // allows typing
+    text.textContent="Task"; 
 
-    // press enter to create new task
-    text.addEventListener("keydown", function(e) {
-
-        if (e.key === "Enter") {
-            e.preventDefault();
-            addTodoItem(container);
-
-            setTimeout(() => {
-                container.lastChild.querySelector(".todo-text").focus();
-            }, 0);
-        }
-
-        if (e.key === "Backspace" && text.innerText.trim() === "") {
-            e.preventDefault();
-
-            if (container.children.length > 1) {
-                item.remove();
-
-                setTimeout(() => {
-                    const last = container.lastChild.querySelector(".todo-text");
-                    if (last) last.focus();
-                }, 0);
-            }
-        }
-    });
+    // addTaskBoxListener(text); 
 
     item.appendChild(checkbox);
     item.appendChild(text);
     container.appendChild(item);
 
-    text.focus();
+    addTypingListeners(text);
+    checkListener(checkbox); 
+
+    document.getElementById('hidden-taskitem-id').setAttribute('value', item.id); 
+    document.getElementById('hidden-container-id').setAttribute('value', container.id);
+    document.getElementById('hidden-taskitem-content').setAttribute('value', item.children[1].innerText); 
+
+    document.forms['hidden-taskitem-form'].submit(); 
 }

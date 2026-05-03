@@ -32,13 +32,33 @@
     
     <!-- canvas where notes will appear -->
      <div class="canvas" id="canvas">
+        <!-- load notes -->
         {% for note in notes %}
             <div 
                 id="{{note.noteid}}" class="note"
                 contentEditable="true"
                 style="left: {{note.position_left}}; top: {{note.position_top}};"
-                onfocus="makeDraggable(this); addDeleteButton(this); addListener(this); "
+                onfocus="makeNoteDraggable(this); addDeleteButton(this); addNoteListener(this);"
             >{{note.content|linebreaksbr}}&nbsp;
+            </div>
+        {% endfor %}
+
+        <!-- load tasks -->
+        {% for box in taskboxes %}
+            <div 
+                id="{{box.taskboxid}}" class="todo"
+                style="left: {{box.position_left}}; top: {{box.position_top}}"
+                onclick="makeTaskDraggable(this); addDeleteButton(this);">
+                
+                {% for item in taskitems %}
+                    {% if item.taskbox == box.taskboxid %}
+                        <div id="{{item.taskitemid}}" class="todo-item">
+                            <input type="checkbox" onclick="checkListener(this)">
+                            <div contentEditable="true" onclick="addTypingListeners(this)">{{item.content}}</div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            
             </div>
         {% endfor %}
      </div>
@@ -58,12 +78,33 @@
     </div>
 
     <!-- hidden values -->
-    <form name="hidden-form" method="POST" action="/createUpdateNote/{{date_value}}/{{pgno}}">
+    <form name="hidden-note-form" method="POST" action="/createUpdateNote/{{date_value}}/{{pgno}}">
         {% csrf_token %}
         <input type="hidden" id="hidden-note-id" name="hidden-note-id">
         <input type="hidden" id="hidden-note-content" name="hidden-note-content" value="">
         <input type="hidden" id="hidden-note-position-top" name="hidden-note-position-top">
         <input type="hidden" id="hidden-note-position-left" name="hidden-note-position-left">
+    </form>
+
+    <form name="hidden-taskitem-form" method="POST" action="/createUpdateTaskBox/{{date_value}}/{{pgno}}">
+        {% csrf_token %}
+
+        <input type="hidden" id="hidden-taskitem-id" name="hidden-taskitem-id">
+        <input type="hidden" id="hidden-container-id" name="hidden-container-id">
+        <input type="hidden" id="hidden-taskitem-content" name="hidden-taskitem-content">
+    </form>
+
+    <form name="hidden-taskposition-form" method="POST" action="/updateTaskPosition/{{date_value}}/{{pgno}}">
+        {% csrf_token %}
+
+        <input type="hidden" id="task-id" name="task-id">
+        <input type="hidden" id="taskposition-left" name="taskposition-left">
+        <input type="hidden" id="taskposition-top" name="taskposition-top">
+    </form>
+
+    <form name="hidden-taskcheck-form" method="POST" action="/updateTaskCheck/{{date_value}}/{{pgno}}">
+        {% csrf_token %}
+        <input type="hidden" id="hidden-taskitem-checked" name="hidden-taskitem-checked">
     </form>
 
     
