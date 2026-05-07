@@ -13,6 +13,26 @@ page_title_input.addEventListener('blur', (e) => {
 var prev_button = document.getElementById('prev-button'); 
 var next_button = document.getElementById('next-button'); 
 
+// ================================ CLICK LISTENER FOR BUTTON ==============================
+document.addEventListener('click', (e) => {
+    if (e.target.parentNode.className == "checked") {
+        e.stopPropagation(); 
+        let item = e.target.parentNode.parentNode; 
+        item.children[1].style.textDecoration = null; 
+        let value = 0;
+        e.target.parentNode.className = "unchecked";
+        location.href = `/updateTaskCheck/${date_value}/${pgno}/${item.id}/${value}`;
+    }
+    if (e.target.className == "unchecked") {
+        e.stopPropagation(); 
+        let item = e.target.parentNode; 
+        item.children[1].style.textDecoration = "line-through"; 
+        let value = 1;
+        e.target.className = "checked"; 
+        location.href = `/updateTaskCheck/${date_value}/${pgno}/${item.id}/${value}`;
+    }
+}); 
+
 prev_button.addEventListener('click', (e) => {
     if (pgno != "1") {
         location.href = "/turnPage/" + date_value + "/" + (parseInt(pgno)-1); 
@@ -61,7 +81,7 @@ function addTypingListeners(text) {
     text.addEventListener("keydown", function(e) {
 
         if (e.code == "Enter") {
-            e.preventDefault(); 
+            e.preventDefault();  
             addTodoItem(container);
 
             setTimeout(() => {
@@ -71,7 +91,7 @@ function addTypingListeners(text) {
         }
 
         if (e.code == "Backspace" && text.innerText.trim() == "") {
-            e.preventDefault();
+            e.preventDefault(); 
 
             if (container.children.length > 2) {
                 item.remove();
@@ -79,13 +99,6 @@ function addTypingListeners(text) {
             }
         }
     });
-}
-
-// ================= LISTENER FOR CHECKBOX =================
-function checkListener(checkbox) {
-    checkbox.onchange = function(e) {
-        alert(checkbox.checked);
-    }
 }
 
 // ================= NOTES =================
@@ -191,9 +204,8 @@ function addTodoItem(container) {
     item.id = crypto.randomUUID();  // creates one task row
     item.className = "todo-item";
 
-    const checkbox = document.createElement("input"); // creates checkbox
-    checkbox.type = "checkbox";
-    checkbox.checked = false; 
+    const checkbox = document.createElement("div"); // creates checkbox
+    checkbox.className = "unchecked"; 
 
     const text = document.createElement("div"); // creates text area
     text.className = "todo-text";

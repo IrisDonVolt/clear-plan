@@ -53,8 +53,17 @@
                 {% for item in taskitems %}
                     {% if item.taskbox == box.taskboxid %}
                         <div id="{{item.taskitemid}}" class="todo-item">
-                            <input type="checkbox" onclick="checkListener(this)">
-                            <div contentEditable="true" onclick="addTypingListeners(this); addBlurListener(this);">{{item.content}}</div>
+                            {% if item.checked == True %}
+                            <div class="checked">
+                                <img src="{% static "check.png" %}" onclick="addCheckListener(this)">
+                            </div>
+                            <div contentEditable="true" onfocus="addTypingListeners(this); addBlurListener(this);"
+                                 style="text-decoration: line-through;">{{item.content}}</div>
+
+                            {% else %}
+                            <div class="unchecked" onclick="addCheckListener(this)"></div>
+                            <div contentEditable="true" onfocus="addTypingListeners(this); addBlurListener(this);">{{item.content}}</div>
+                            {% endif %}
                         </div>
                     {% endif %}
                 {% endfor %}

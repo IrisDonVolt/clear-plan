@@ -248,7 +248,8 @@ def updateTaskPosition(request, date, pgno):
             
 def updateTaskCheck(request, date, pgno, uuid, check):
     taskitem = TaskItem.objects.get(taskitemid=uuid)
-    taskitem.update(checked=check)
+    taskitem.checked = check 
+    taskitem.save() 
     
     return redirect(f"/page/{date}/{pgno}")
 
