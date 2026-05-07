@@ -2,13 +2,13 @@ function changeTheme(button) {
     if (button.id == "waffle-theme-image") {
         document.body.style.setProperty("--lightwash", "#FFDAB7");
         document.body.style.setProperty("--primary-color", "#872E0B");
-        document.body.style.setProperty("--secondary-color", "#9A5A16");
+        document.body.style.setProperty("--secondary-color", "#CD8232");
         document.body.style.setProperty("--accent-color", "#000000");
         document.body.style.setProperty("--primary-font", "'Courier New', Courier, monospace"); 
 
         localStorage.setItem("lightwash", "#FFDAB7");
         localStorage.setItem("primary-color", "#872E0B");
-        localStorage.setItem("secondary-color", "#9A5A16");
+        localStorage.setItem("secondary-color", "#CD8232");
         localStorage.setItem("accent-color", "#000000");
         localStorage.setItem("primary-font", "'Courier New', Courier, monospace");
 

@@ -15,7 +15,6 @@ urlpatterns = [
     path('updatePageTitle/<str:date>/<int:pgno>', views.updatePageTitle, name='updatePageTitle'),
     path('createUpdateNote/<str:date>/<int:pgno>', views.createUpdateNote, name='createUpdateNote'), 
     path('createUpdateTaskBox/<str:date>/<int:pgno>', views.createUpdateTaskBox, name='createUpdateTaskBox'),
-    path('createUpdateTaskItem/<str:date>/<int:pgno>/<str:taskitemid>/<str:taskbox>/<slug:content>', views.createUpdateTaskItem, name='createUpdateTaskItem'),
     path('updateTaskPosition/<str:date>/<int:pgno>', views.updateTaskPosition, name='updateTaskPosition'),
     path('updateTaskCheck/<str:date>/<int:pgno>/<str:uuid>/<int:check>', views.updateTaskCheck, name='updateTaskCheck'),
     path('deleteEntity/<str:date>/<int:pgno>/<str:uuid>', views.deleteEntity, name='deleteNote')

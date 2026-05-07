@@ -41,15 +41,15 @@ function addNoteListener(note) {
 
 // ================= BLUR LISTENER FOR TODO =================
 
-function addTaskBoxListener(taskitem) {
+function addBlurListener(taskitem) {
 
     taskitem.addEventListener('blur', (e) => {
-        alert("this"); 
-        // document.getElementById('hidden-taskbox-id').setAttribute('value', taskbox.id); 
-        // document.getElementById('hidden-taskbox-position-top').setAttribute('value', taskbox.style.top); 
-        // document.getElementById('hidden-taskbox-position-left').setAttribute('value', taskbox.style.left); 
 
-        // document.forms['hidden-taskbox-form'].submit(); 
+        document.getElementById('hidden-taskitem-id').setAttribute('value', e.target.parentNode.id); 
+        document.getElementById('hidden-container-id').setAttribute('value', e.target.parentNode.parentNode.id);
+        document.getElementById('hidden-taskitem-content').setAttribute('value', e.target.innerText); 
+
+        document.forms['hidden-taskitem-form'].submit(); 
     });
 }
 
@@ -60,30 +60,22 @@ function addTypingListeners(text) {
     container = item.parentNode;
     text.addEventListener("keydown", function(e) {
 
-        if (e.key === "Enter") {
+        if (e.code == "Enter") {
+            e.preventDefault(); 
             addTodoItem(container);
 
             setTimeout(() => {
                 container.lastChild.querySelector(".todo-text").focus();
             }, 0);
 
-            let parentID = e.target.parentNode.id; 
-            let content = e.target.textContent;
-            content = content.replace(/ /g, '-');  
-            location.href=`/createUpdateTaskItem/${date_value}/${pgno}/${parentID}/${container.id}/${content}`;
-            e.preventDefault();
         }
 
-        if (e.key === "Backspace" && text.innerText.trim() === "") {
+        if (e.code == "Backspace" && text.innerText.trim() == "") {
             e.preventDefault();
 
-            if (container.children.length > 1) {
+            if (container.children.length > 2) {
                 item.remove();
-
-                setTimeout(() => {
-                    const last = container.lastChild.querySelector(".todo-text");
-                    if (last) last.focus();
-                }, 0);
+                location.href = `/deleteEntity/${date_value}/${pgno}/${item.id}`;
             }
         }
     });
@@ -190,8 +182,6 @@ function addTodo() {
     canvas.appendChild(todo); // adds todo to page
     makeTaskDraggable(todo); // makes todo movable
     addDeleteButton(todo); // add delete icon // add onblur listener for the taskbox 
-
-    // addMouseUpListener(todo);
     
     addTodoItem(todo); // adds first task
 }
@@ -210,14 +200,12 @@ function addTodoItem(container) {
     text.contentEditable = true; // allows typing
     text.textContent="Task"; 
 
-    // addTaskBoxListener(text); 
-
     item.appendChild(checkbox);
     item.appendChild(text);
     container.appendChild(item);
 
     addTypingListeners(text);
-    checkListener(checkbox); 
+    addBlurListener(text); 
 
     document.getElementById('hidden-taskitem-id').setAttribute('value', item.id); 
     document.getElementById('hidden-container-id').setAttribute('value', container.id);

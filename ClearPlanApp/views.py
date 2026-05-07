@@ -219,24 +219,17 @@ def createUpdateTaskBox(request, date, pgno):
         if not taskbox_object.exists(): 
             new_taskbox = Taskbox(taskboxid=taskbox, page=current_page.pageid)                                  
             new_taskbox.save() 
-            
-    return redirect(f"/createUpdateTaskItem/{date}/{pgno}/{taskitemid}/{taskbox}/{content}")
-
-def createUpdateTaskItem(request, date, pgno, taskitemid, taskbox, content): 
-    current_custom_user = Users.objects.get(username=request.user.username) 
-    current_page = Page.objects.get(date=date, page_number=pgno, user_name=current_custom_user.username)
-    
-    content = content.replace("-", " ")
-    taskitem = TaskItem.objects.filter(taskitemid=taskitemid)
-    if not taskitem.exists():
-        new_taskitem = TaskItem(taskitemid=taskitemid, taskbox=taskbox, 
-                                content=content)
-        new_taskitem.save() 
         
-    else: 
-        taskitem = TaskItem.objects.get(taskitemid=taskitemid)
-        taskitem.content = content 
-        taskitem.save()
+        taskitem = TaskItem.objects.filter(taskitemid=taskitemid)
+        if not taskitem.exists():
+            new_taskitem = TaskItem(taskitemid=taskitemid, taskbox=taskbox, 
+                                    content=content)
+            new_taskitem.save() 
+    
+        else: 
+            taskitem = TaskItem.objects.get(taskitemid=taskitemid)
+            taskitem.content = content 
+            taskitem.save()
             
     return redirect(f"/page/{date}/{pgno}")
 

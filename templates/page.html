@@ -54,7 +54,7 @@
                     {% if item.taskbox == box.taskboxid %}
                         <div id="{{item.taskitemid}}" class="todo-item">
                             <input type="checkbox" onclick="checkListener(this)">
-                            <div contentEditable="true" onclick="addTypingListeners(this)">{{item.content}}</div>
+                            <div contentEditable="true" onclick="addTypingListeners(this); addBlurListener(this);">{{item.content}}</div>
                         </div>
                     {% endif %}
                 {% endfor %}
@@ -106,6 +106,8 @@
         {% csrf_token %}
         <input type="hidden" id="hidden-taskitem-checked" name="hidden-taskitem-checked">
     </form>
+
+    <div type="hidden" id="hidden-focusable-element"></div>
 
     
 </body>
