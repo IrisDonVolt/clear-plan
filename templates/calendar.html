@@ -10,9 +10,26 @@
 
         <script src="{% static 'calendar.js' %}" defer></script>
         <script src="{% static 'loadThemes.js' %}"></script>
+        <script>
+            function setTaskbarPosition(position) {
+                // taskbar preference 
+                var taskbar_pref = localStorage.getItem('taskbar_pref'); 
+                if (taskbar_pref == "right") {
+                    positionToggle("right"); 
+                }
+
+                if (taskbar_pref == "left") {
+                    positionToggle("left"); 
+                }
+
+                if (taskbar_pref == "bottom") {
+                    positionToggle("bottom"); 
+                }
+            }
+        </script>
     </head>
 
-    <body>
+    <body onload="setTaskbarPosition()">
         <div class="header">
             <!-- home button -->
             <div id="home-button" onclick="location.href = 'userhome'">
@@ -56,17 +73,28 @@
             <!-- information display -->
             <div class="information-display">
                 <div class="text" id="instruction-display">Select a date.</div>
-                <div class="text" id="date-display"></div>
+                <div class="text" id="date-display">{{date_for_display}}</div>
+                <div class="text" id="pages-created-display">Pages created: {{page_count}}</div>
+                <div class="text" id="entities-created-display">Entities created: {{entity_count}}</div>
             </div>
         </div>
 
         <div class="complete-bottom-bar" id="complete-bottom-bar">
             <div class="taskbar" id="taskbar">
+                <button class="taskbar-button" id="today-button">Today</button>
                 <form action="/createOpenPage" method="POST">
                     {% csrf_token %}
                     <input type="hidden" name="selected-date" id="selected-date" value="">
                     <label for="open-button" class="taskbar-button">Open</label>
                     <input class="input-button" type="submit" id="open-button">
+                </form>
+
+                <form action="/calendar" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="selected-date" id="selected-date-for-info" value="">
+                    <input type="hidden" name="date-for-display" id="date-for-display" value="">
+                    <label for="view-info-button" class="taskbar-button">Info</label>
+                    <input class="input-button" type="submit" id="view-info-button">
                 </form>
             </div>
 

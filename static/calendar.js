@@ -52,7 +52,7 @@ function positionToggle(position) {
         complete_bar.style.flexDirection = "column"; 
         complete_bar.style.left = null; 
         complete_bar.style.right = "30px"; 
-        complete_bar.style.bottom = "200px"; 
+        complete_bar.style.bottom = "270px"; 
         complete_bar.style.top = null; 
         complete_bar.style.position = "absolute"
 
@@ -60,6 +60,8 @@ function positionToggle(position) {
         taskbar.style.borderRadius = "20px";
 
         dropdown.style.display = "none"; 
+
+        localStorage.setItem('taskbar_pref', "right");
     }
 
     if (position == "left") {
@@ -80,6 +82,8 @@ function positionToggle(position) {
         complete_bar.style.position = "relative"; 
 
         dropdown.style.display = "none"; 
+
+        localStorage.setItem('taskbar_pref', "left"); 
     }
 
     if (position == "bottom") {
@@ -100,6 +104,8 @@ function positionToggle(position) {
             element_flex_box.removeChild(complete_bar); 
             document.body.appendChild(complete_bar); 
         }
+
+        localStorage.setItem('taskbar_pref', "bottom"); 
     }
 }
 
@@ -169,12 +175,11 @@ function selectedDate(date) {
     var monthBuilder = monthArray[monthName] + 1
 
     var dateBuilderWithFormat = day + "-" + monthBuilder + "-" + yearBuilder; 
+    document.getElementById('date-for-display').setAttribute('value', date_display.textContent); 
     document.getElementById('selected-date').setAttribute('value', dateBuilderWithFormat); 
+    document.getElementById('selected-date-for-info').setAttribute('value', dateBuilderWithFormat); 
 
 }
-    
-
-
 
 // initial render of calendar 
 renderCalendar(); 

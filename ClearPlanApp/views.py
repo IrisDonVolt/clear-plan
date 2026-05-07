@@ -113,8 +113,56 @@ def editjournal(request):
 def themes(request): 
     return render(request, 'themes.html')
 
-def calendar(request): 
-    return render(request, 'calendar.html')
+def calendar(request):
+    if request.method == "POST":
+        note_count = task_count = entity_count = page_count = 0  
+        selected_date = request.POST['selected-date']
+        date_for_display = request.POST['date-for-display']
+        context = {
+            'date_for_display': date_for_display
+        } 
+        
+        page_query = Page.objects.filter(date=selected_date).values()
+        if page_query.exists():
+            page_count = Page.objects.filter(date=selected_date).count()
+            
+            for page in page_query: 
+                note_count += Note.objects.filter(page=page['pageid']).count()
+                task_count += Taskbox.objects.filter(page=page['pageid']).count()
+            
+            entity_count = note_count + task_count 
+
+        context['page_count'] = page_count 
+        context['entity_count'] = entity_count 
+        
+        return render(request, 'calendar.html', context=context)
+    
+    else: 
+        return render(request, 'calendar.html')
+
+
+def viewCalendarInfo(request): 
+    note_count = task_count = entity_count = page_count = 0 
+    if request.method == "POST": 
+        selected_date = request.POST['selected-date']
+        context = {
+            'selected_date': selected_date 
+        } 
+        
+        page_query = Page.objects.filter(date=selected_date).values()
+        if page_query.exists():
+            page_count = Page.objects.filter(date=selected_date).count()
+            
+            for page in page_query: 
+                note_count += Note.objects.filter(page=page['pageid']).count()
+                task_count += Taskbox.objects.filter(page=page['pageid']).count()
+            
+            entity_count = note_count + task_count 
+
+        context['page_count'] = page_count 
+        context['entity_count'] = entity_count 
+        
+        return render(request, 'calendar.html', context=context)
 
     
 def page(request, date, pgno):

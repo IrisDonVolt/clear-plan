@@ -9,6 +9,7 @@ urlpatterns = [
     path('editjournal', views.editjournal, name='editjournal'), 
     path('themes', views.themes, name='themes'), 
     path('calendar', views.calendar, name='calendar'), 
+    path('viewCalendarInfo', views.viewCalendarInfo, name='viewCalendarInfo'),
     path('createOpenPage', views.createOpenPage, name='createOpenPage'), 
     path('page/<str:date>/<int:pgno>', views.page, name='page'),
     path('turnPage/<str:date>/<int:pgno>', views.turnPage, name='turnPage'),
