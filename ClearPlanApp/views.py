@@ -115,6 +115,7 @@ def themes(request):
 
 def calendar(request):
     if request.method == "POST":
+        current_custom_user = Users.objects.get(username=request.user.username)
         note_count = task_count = entity_count = page_count = 0  
         selected_date = request.POST['selected-date']
         date_for_display = request.POST['date-for-display']
@@ -122,9 +123,9 @@ def calendar(request):
             'date_for_display': date_for_display
         } 
         
-        page_query = Page.objects.filter(date=selected_date).values()
+        page_query = Page.objects.filter(user_name=current_custom_user.username, date=selected_date).values()
         if page_query.exists():
-            page_count = Page.objects.filter(date=selected_date).count()
+            page_count = Page.objects.filter(user_name=current_custom_user.username, date=selected_date).count()
             
             for page in page_query: 
                 note_count += Note.objects.filter(page=page['pageid']).count()

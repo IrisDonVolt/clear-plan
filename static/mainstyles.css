@@ -63,8 +63,9 @@
 
 
 .main-button {
-    width: 241px;
+    min-width: 241px;
     height: 74px; 
+    width: fit-content;
     border-radius: 48px;
     background-color: var(--primary-color);
     stroke: none;
@@ -72,6 +73,7 @@
     color: #FFFFFF;
     font-family: var(--secondary-font);
     cursor: pointer; 
+    padding: 0px 30px 0px 30px;
     
 }
 

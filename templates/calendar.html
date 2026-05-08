@@ -81,7 +81,6 @@
 
         <div class="complete-bottom-bar" id="complete-bottom-bar">
             <div class="taskbar" id="taskbar">
-                <button class="taskbar-button" id="today-button">Today</button>
                 <form action="/createOpenPage" method="POST">
                     {% csrf_token %}
                     <input type="hidden" name="selected-date" id="selected-date" value="">

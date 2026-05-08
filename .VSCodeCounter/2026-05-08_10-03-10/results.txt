@@ -1,0 +1,31 @@
+Date : 2026-05-08 10:03:10
+Directory : c:\Users\IrisDonVolt\MyProjects\ClearPlan\ClearPlanApp
+Total : 7 files,  306 codes, 9 comments, 91 blanks, all 406 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| Python   |          7 |        306 |          9 |         91 |        406 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++--------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                               | files      | code       | comment    | blank      | total      |
++--------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                  |          7 |        306 |          9 |         91 |        406 |
++--------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++--------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                           | language | code       | comment    | blank      | total      |
++--------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\ClearPlanApp\__init__.py | Python   |          0 |          0 |          1 |          1 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\ClearPlanApp\admin.py    | Python   |          8 |          1 |          1 |         10 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\ClearPlanApp\apps.py     | Python   |          3 |          0 |          3 |          6 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\ClearPlanApp\models.py   | Python   |         33 |          1 |          6 |         40 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\ClearPlanApp\tests.py    | Python   |          1 |          1 |          2 |          4 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\ClearPlanApp\urls.py     | Python   |         21 |          0 |          1 |         22 |
+| c:\Users\IrisDonVolt\MyProjects\ClearPlan\ClearPlanApp\views.py    | Python   |        240 |          6 |         77 |        323 |
+| Total                                                              |          |        306 |          9 |         91 |        406 |
++--------------------------------------------------------------------+----------+------------+------------+------------+------------+

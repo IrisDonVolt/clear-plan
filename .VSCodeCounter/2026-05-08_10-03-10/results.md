@@ -1,23 +1,21 @@
 # Summary
 
-Date : 2026-05-02 01:26:20
+Date : 2026-05-08 10:03:10
 
-Directory c:\\Users\\IrisDonVolt\\MyProjects\\ClearPlan\\templates
+Directory c:\\Users\\IrisDonVolt\\MyProjects\\ClearPlan\\ClearPlanApp
 
-Total : 9 files,  490 codes, 38 comments, 90 blanks, all 618 lines
+Total : 7 files,  306 codes, 9 comments, 91 blanks, all 406 lines
 
 Summary / [Details](details.md) / [Diff Summary](diff.md) / [Diff Details](diff-details.md)
 
 ## Languages
 | language | files | code | comment | blank | total |
 | :--- | ---: | ---: | ---: | ---: | ---: |
-| HTML | 9 | 490 | 38 | 90 | 618 |
+| Python | 7 | 306 | 9 | 91 | 406 |
 
 ## Directories
 | path | files | code | comment | blank | total |
 | :--- | ---: | ---: | ---: | ---: | ---: |
-| . | 9 | 490 | 38 | 90 | 618 |
-| . (Files) | 8 | 457 | 35 | 80 | 572 |
-| registration | 1 | 33 | 3 | 10 | 46 |
+| . | 7 | 306 | 9 | 91 | 406 |
 
 Summary / [Details](details.md) / [Diff Summary](diff.md) / [Diff Details](diff-details.md)
