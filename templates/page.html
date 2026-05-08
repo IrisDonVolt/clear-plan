@@ -70,16 +70,6 @@
             
             </div>
         {% endfor %}
-
-        <!-- load images -->
-        {% for image in images %}
-            <div class="image-box" 
-                 style="width:{{image.width}}; height:{{image.height}};
-                        top:{{image.position_top}}; left:{{image.position_left}};">
-
-                <img src="{{image.source.url}}" id="{{image.imageid}}">
-            </div>
-        {% endfor %}
      </div>
      
      <!-- bottom toolbar with button -->
@@ -94,7 +84,6 @@
      <div class="sidebar">
         <button onclick="addNote()">🗒<span>Note</span></button>
         <button onclick="addTodo()">☑<span>To-do</span></button>
-        <button onclick="addImage()">🖼️<span>Image</span></button>
     </div>
 
     <!-- hidden values -->
@@ -127,15 +116,7 @@
         <input type="hidden" id="hidden-taskitem-checked" name="hidden-taskitem-checked">
     </form>
 
-    <form name="hidden-image-form" method="POST" action="/saveImage/{{date_value}}/{{pgno}}">
-        {% csrf_token %}
-        <input type="hidden" id="hidden-image-id" name="hidden-image-id">
-        <input type="hidden" id="hidden-image" name="hidden-image">
-        <input type="hidden" id="hidden-image-position-left" name="hidden-image-position-left">
-        <input type="hidden" id="hidden-image-position-top" name="hidden-image-position-top">
-        <input type="hidden" id="hidden-image-position-width" name="hidden-image-position-width">
-        <input type="hidden" id="hidden-image-position-height" name="hidden-image-position-height">
-    </form>
+    <div type="hidden" id="hidden-focusable-element"></div>
 
     
 </body>

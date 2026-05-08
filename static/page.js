@@ -101,42 +101,6 @@ function addTypingListeners(text) {
     });
 }
 
-// ================ LOAD READER ===================
-
-function loadReader(file) {
-    var reader = new FileReader();
-
-    reader.onload = function(e) {
-        var imgBox = document.createElement("div");
-        imgBox.className = "image-box";
-
-        imgBox.style.left = "200px";
-        imgBox.style.top = "200px";
-        imgBox.style.width = "200px";
-        imgBox.style.height = "150px";
-
-        var img = document.createElement("img");
-        img.id = crypto.randomUUID(); 
-        img.src = e.target.result;
-
-        imgBox.appendChild(img);
-        canvas.appendChild(imgBox);
-
-        makeImageDraggable(imgBox);
-        addDeleteButton(imgBox);
-
-        document.getElementById('hidden-image-id').setAttribute('value', img.id);
-        document.getElementById('hidden-image-position-top').setAttribute('value', imgBox.style.top); 
-        document.getElementById('hidden-image-position-left').setAttribute('value', imgBox.style.left); 
-        document.getElementById('hidden-image-position-width').setAttribute('value', imgBox.style.width); 
-        document.getElementById('hidden-image-position-height').setAttribute('value', imgBox.style.height); 
-
-        document.forms['hidden-image-form'].submit(); 
-    };
-
-    reader.readAsDataURL(file);
-}
-
 // ================= NOTES =================
 function addNote(){
     const note = document.createElement("div"); // creates a new div
@@ -195,24 +159,6 @@ function makeTaskDraggable(element){
 
                 document.forms['hidden-taskposition-form'].submit();
             
-        }
-    }
-}
-
-function makeImageDraggable(element) {
-    let offsetX = 0, offsetY = 0; // stores mouse offset 
-
-    element.onmousedown = function(e){ // when mouse is pressed
-        offsetX = e.clientX - element.offsetLeft; // calculate x offset
-        offsetY = e.clientY - element.offsetTop; // calculate y offset
-        
-        document.onmousemove = function(e){ // when mouse moves
-            element.style.left = (e.clientX - offsetX) + "px"; // move horizontally
-            element.style.top = (e.clientY - offsetY) + "px"; // move vertically
-        }
-
-        document.onmouseup = function(){ // when mouse is released
-            document.onmousemove = null; // stops moving
         }
     }
 }
@@ -278,24 +224,4 @@ function addTodoItem(container) {
     document.getElementById('hidden-taskitem-content').setAttribute('value', item.children[1].innerText); 
 
     document.forms['hidden-taskitem-form'].submit(); 
-}
-
-
-// ================= ADD IMAGE ====================
-function addImage() {
-
-    const input = document.createElement("input");
-    input.type = "file";
-    input.accept = "image/*";
-
-    input.onchange = function() {
-        var file = input.files[0];
-        if (!file) return;
-
-        document.getElementById('hidden-image').setAttribute('value', file); 
-
-        loadReader(file); 
-    };
-
-    input.click();
 }
