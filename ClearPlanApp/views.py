@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages 
-from .models import Users, Journal, Page, Note, Taskbox, TaskItem
+from .models import Users, Journal, Page, Note, Taskbox, TaskItem, Image
 from django.http import HttpResponse
 from datetime import datetime 
 
@@ -177,6 +177,7 @@ def page(request, date, pgno):
     context['page_title'] = current_page.title
     notes = Note.objects.filter(page=current_page.pageid).values()
     taskboxes = Taskbox.objects.filter(page=current_page.pageid).values()
+    images = Image.objects.filter(page=current_page.pageid).values()
     
     if notes.exists(): 
         context['notes'] = notes
@@ -184,6 +185,9 @@ def page(request, date, pgno):
     if taskboxes.exists(): 
         context['taskboxes'] = taskboxes
         context['taskitems'] = TaskItem.objects.all()
+        
+    if images.exists():
+        context['images'] = images 
 
     return render(request, 'page.html', context=context)
 
@@ -301,21 +305,48 @@ def updateTaskCheck(request, date, pgno, uuid, check):
     
     return redirect(f"/page/{date}/{pgno}")
 
+def saveImage(request, date, pgno): 
+    current_custom_user = Users.objects.get(username=request.user.username)
+    current_page = Page.objects.get(date=date, page_number=pgno, user_name=current_custom_user.username)
+    if request.method == "POST": 
+        imageid = request.POST['hidden-image-id']
+        source = request.POST['hidden-image']
+        top = request.POST['hidden-image-position-top']
+        left = request.POST['hidden-image-position-left']
+        width = request.POST['hidden-image-position-width']
+        height = request.POST['hidden-image-position-height']
+        
+        image = Image(imageid=imageid, source=source, page=current_page.pageid,
+                      position_top=top, position_left=left, 
+                      width=width, height=height)
+        
+        image.save() 
+        
+        return redirect(f"/page/{date}/{pgno}")
+
+
+
+
 def deleteEntity(request, date, pgno, uuid): 
+    image = Image.objects.filter(imageid=uuid)
+    
+    if image.exists():
+        image.delete()
+        
+    
     note = Note.objects.filter(noteid=uuid)
     
     if note.exists():
         note.delete()
         
-    else:
-        taskbox = Taskbox.objects.filter(taskboxid=uuid)
-        
-        if taskbox.exists():
-            TaskItem.objects.filter(taskbox=uuid).delete()
-            taskbox.delete()
-                
-        else: 
-            TaskItem.objects.filter(taskitemid=uuid).delete()
+    taskbox = Taskbox.objects.filter(taskboxid=uuid)
+    
+    if taskbox.exists():
+        TaskItem.objects.filter(taskbox=uuid).delete()
+        taskbox.delete()
+            
+    else: 
+        TaskItem.objects.filter(taskitemid=uuid).delete()
         
     
     

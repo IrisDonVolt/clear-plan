@@ -299,3 +299,23 @@ body {
     width: 100%; 
     height: 100%; 
 }
+
+/* ================= IMAGE ================= */
+.image-box {
+    position: absolute;
+    padding: 5px;
+    
+    border-radius: 10px;
+    resize: both;
+    overflow: hidden;
+    min-width: 100px;
+    min-height: 100px;
+    z-index: 10;
+}
+
+.image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+}

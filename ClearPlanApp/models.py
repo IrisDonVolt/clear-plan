@@ -38,3 +38,12 @@ class TaskItem(models.Model):
     taskbox = models.UUIDField(max_length=None, default='')
     content = models.TextField(max_length=None)
     checked = models.BooleanField(max_length=None, default=False)
+    
+class Image(models.Model): 
+    imageid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False) 
+    page = models.UUIDField(max_length=None)
+    source=models.ImageField(upload_to='images/')
+    position_top = models.CharField(max_length=None, default="100px")
+    position_left = models.CharField(max_length=None, default="100px")
+    width = models.CharField(max_length=None, default="200px"); 
+    height = models.CharField(max_length=None, default="200px"); 

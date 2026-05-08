@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Users, Journal, Page, Note, Taskbox, TaskItem
+from .models import Users, Journal, Page, Note, Taskbox, TaskItem, Image
 
 # Register your models here.
 admin.site.register(Users)
@@ -8,3 +8,4 @@ admin.site.register(Page)
 admin.site.register(Note)
 admin.site.register(Taskbox)
 admin.site.register(TaskItem)
+admin.site.register(Image)
