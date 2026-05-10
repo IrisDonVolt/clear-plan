@@ -52,7 +52,7 @@ function positionToggle(position) {
         complete_bar.style.flexDirection = "column"; 
         complete_bar.style.left = null; 
         complete_bar.style.right = "30px"; 
-        complete_bar.style.bottom = "210px"; 
+        complete_bar.style.bottom = "275px"; 
         complete_bar.style.top = null; 
         complete_bar.style.position = "absolute"
 
